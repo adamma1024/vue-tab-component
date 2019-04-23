@@ -1,0 +1,53 @@
+{
+  "name": "vue-tabs",
+  "version": "1.0.0",
+  "description": "easy tabs component",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node build/dev-server.js",
+    "build:dev": "node ./build/build.dev.js",
+    "build": "node ./build/build.js",
+    "lint": "./node_modules/.bin/eslint --fix --ext .js,.vue src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qq240814476/vue-tabs-demo.git"
+  },
+  "author": "malin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qq240814476/vue-tabs-demo/issues"
+  },
+  "homepage": "https://github.com/qq240814476/vue-tabs-demo#readme",
+  "engines": {
+    "node": ">= 10.15.0",
+    "npm": ">= 6.0.0"
+  },
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.30.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "iview": "^3.4.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "ora": "^3.4.0",
+    "shelljs": "^0.8.3",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
+    "vue-loader": "^15.7.0",
+    "webpack-merge": "^4.2.1"
+  }
+}

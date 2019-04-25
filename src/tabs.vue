@@ -11,6 +11,8 @@
       <div ref='navScroll' class='ml-tab-item-scroll'>
         <div ref='nav' class='ml-tab-item-scroll-nav' :style='navStyle'>
           <div
+            @mouseenter="(e) => mouseEnter(e, item)"
+            @mouseLeave="mouseLeave"
             @click='onTabClick(item)'
             v-for='(item, index) in showList'
             :key='index'
@@ -21,7 +23,7 @@
               <span>{{item.text}}</span>
               <Icon
                 v-if='showClose(item)'
-                :type='ios-close'
+                type='ios-close'
                 @click.native.stop='handleRemove(item)'
               ></Icon>
             </div>
@@ -40,7 +42,7 @@ import maxNumMixin from './mixins/maxNumMixin.js'
 import offsetMixin from './mixins/offsetMixin.js'
 
 export default {
-  mixins: [maxNumMixin, offsetMixin],
+  mixins: [offsetMixin, maxNumMixin],
   props: {
     data: {
       type: Array,
@@ -82,7 +84,7 @@ export default {
   data() {
     return {
       currActive: this.activeName,
-      hoverItem: ''
+      hoverId: ''
     };
   },
   watch: {
@@ -114,11 +116,19 @@ export default {
         !item.disabled &&
         this.closable &&
         this.type === 'card' &&
-        (this.currActive === item.id || this.hoverItem === item.id)
+        (this.currActive === item.id || this.hoverId === item.id)
       );
     },
     handleRemove(item) {
       this.$emit('on-tab-close');
+    },
+    mouseEnter (e, item) {
+      if(!item.disabled){
+        this.hoverId = item.id
+      }
+    },
+    mouseLeave () {
+      this.hoverId = ''
     }
   }
 };

@@ -21,7 +21,9 @@ export default {
       ) {
         this.setOffset(this.getCurrentScrollOffset(2), 0)
       }
-    },
+    }
+  },
+  methods: {
     scrollPrev () {
       const containerWidth = this.isHorizontal
         ? this.$refs.navScroll.offsetWidth
@@ -33,7 +35,7 @@ export default {
       if (!currentOffset) return
 
       let newOffset =
-        currentOffset > containerWidth ? currentOffset - containerWidth : 0;
+        currentOffset > containerWidth ? currentOffset - containerWidth : 0
 
       this.isHorizontal
         ? this.setOffset(newOffset, 0)
@@ -67,19 +69,30 @@ export default {
       const navScroll = this.$refs.navScroll
       const activeTabBounding = activeTab.getBoundingClientRect()
       const navScrollBounding = navScroll.getBoundingClientRect()
-      const maxOffset = nav.offsetWidth - navScrollBounding.width
+      const maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
       const currentOffset = this.isHorizontal
         ? this.getCurrentScrollOffset()
         : this.getCurrentScrollOffset(2)
       let newOffset = currentOffset
 
-      if (activeTabBounding.left < navScrollBounding.left) {
-        newOffset =
-          currentOffset - (navScrollBounding.left - activeTabBounding.left)
-      }
-      if (activeTabBounding.right > navScrollBounding.right) {
-        newOffset =
-          currentOffset + activeTabBounding.right - navScrollBounding.right
+      if (this.isHorizontal) {
+        if (activeTabBounding.left < navScrollBounding.left) {
+          newOffset =
+            currentOffset - (navScrollBounding.left - activeTabBounding.left)
+        }
+        if (activeTabBounding.right > navScrollBounding.right) {
+          newOffset =
+            currentOffset + activeTabBounding.right - navScrollBounding.right
+        }
+      } else {
+        if (activeTabBounding.top < navScrollBounding.bottom) {
+          newOffset =
+            currentOffset - (navScrollBounding.top - activeTabBounding.bottom)
+        }
+        if (activeTabBounding.top > navScrollBounding.bottom) {
+          newOffset =
+            currentOffset + activeTabBounding.bottom - navScrollBounding.top
+        }
       }
 
       newOffset = Math.max(newOffset, 0)
@@ -97,6 +110,18 @@ export default {
     },
     setOffset (x, y) {
       this.navStyle.transform = `translate(-${x}px, -${y}px)`
+    },
+    goBegin () {
+      this.setOffset(0, 0)
+    },
+    goEnd () {
+      const nav = this.$refs.nav
+      const navScroll = this.$refs.navScroll
+      const navScrollBounding = navScroll.getBoundingClientRect()
+      const maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
+      this.isHorizontal
+        ? this.setOffset(maxOffset, 0)
+        : this.setOffset(0, maxOffset)
     }
   }
 }

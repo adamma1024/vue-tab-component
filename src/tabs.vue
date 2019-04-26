@@ -22,7 +22,7 @@
               <Icon :type='itemIcon(item)'></Icon>
               <div>{{item.text}}</div>
             </div>
-            <div>
+            <div class="ml-tab-item-close-div">
               <Icon
                 v-if='showClose(item)'
                 class="ml-tab-item-close"
@@ -172,7 +172,8 @@ export default {
   color: #303133;
   position: relative;
 }
-.ml-tab-item-slot div{
+.ml-tab-item-slot div,
+.ml-tab-item-close-div{
   display: inline-block;
   vertical-align: middle;
 }

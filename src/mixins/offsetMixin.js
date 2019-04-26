@@ -9,17 +9,18 @@ export default {
   watch: {
     tabPosition (val, old) {
       if (
-        old !== 'left' &&
-        old !== 'right' &&
-        (val === 'left' || val === 'right')
+        (
+          old !== 'left' &&
+          old !== 'right' &&
+          (val === 'left' || val === 'right')
+        ) ||
+        (
+          old !== 'top' &&
+          old !== 'bottom' &&
+          (val === 'top' || val === 'bottom')
+        )
       ) {
-        this.setOffset(0, this.getCurrentScrollOffset())
-      } else if (
-        old !== 'top' &&
-        old !== 'bottom' &&
-        (val === 'top' || val === 'bottom')
-      ) {
-        this.setOffset(this.getCurrentScrollOffset(2), 0)
+        this.goBegin()
       }
     }
   },
@@ -37,6 +38,13 @@ export default {
       let newOffset =
         currentOffset > containerWidth ? currentOffset - containerWidth : 0
 
+      if (this.beginPos !== 0) {
+        if (this.beginPos >= 15) {
+          this.showList = this.data.slice(this.beginPos - 15, this.beginPos + this.maxnum - 15)
+        } else {
+          this.showList = this.data.slice(0, this.maxnum)
+        }
+      }
       this.isHorizontal
         ? this.setOffset(newOffset, 0)
         : this.setOffset(0, newOffset)
@@ -57,6 +65,14 @@ export default {
         navWidth - currentOffset > containerWidth * 2
           ? currentOffset + containerWidth
           : navWidth - containerWidth
+
+      if (this.beginPos !== 0) {
+        if (this.dataLength - this.beginPos >= 15) {
+          this.showList = this.data.slice(this.beginPos - this.maxnum + 15, this.beginPos + 15)
+        } else {
+          this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
+        }
+      }
 
       this.isHorizontal
         ? this.setOffset(newOffset, 0)
@@ -112,9 +128,15 @@ export default {
       this.navStyle.transform = `translate(-${x}px, -${y}px)`
     },
     goBegin () {
+      if (this.dataLength > 50) {
+        this.showList = this.data.slice(0, this.maxnum)
+      }
       this.setOffset(0, 0)
     },
     goEnd () {
+      if (this.dataLength > 50) {
+        this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
+      }
       const nav = this.$refs.nav
       const navScroll = this.$refs.navScroll
       const navScrollBounding = navScroll.getBoundingClientRect()

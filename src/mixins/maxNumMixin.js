@@ -7,12 +7,14 @@ export default {
   },
   data () {
     return {
-      showList: this.data.length <= this.maxnum ? this.data : this.data.slice(0, this.maxnum)
+      dataLength: this.data.length,
+      showList: this.dataLength <= this.maxnum ? this.data : this.data.slice(0, this.maxnum)
     }
   },
   watch: {
-    'data.length' () {
-      this.updataShowList()
+    'data.length' (val) {
+      this.dataLength = val
+      this.updataShowList(val)
     }
   },
   computed: {
@@ -39,13 +41,13 @@ export default {
       if (val && this.beginPos !== -1) {
         let index = this.data.findIndex((obj) => obj.id === val)
         if (index !== -1) {
-          let length = this.data.length - 1
+          let length = this.dataLength
           if (index <= this.maxnum / 2) {
             this.showList = this.data.slice(0, this.maxnum)
-          } else if (length - index >= this.maxnum / 2) {
+          } else if ((length - index) >= (this.maxnum / 2)) {
             this.showList = this.data.slice(index - this.maxnum / 2, index + (this.maxnum - this.maxnum / 2))
           } else {
-            this.showList = this.data.slice(length - this.maxnum + 1, length + 1)
+            this.showList = this.data.slice(length - this.maxnum, length)
           }
         }
       }

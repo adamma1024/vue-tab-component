@@ -12,21 +12,22 @@
         <div ref='nav' class='ml-tab-item-scroll-nav' :style='navStyle'>
           <div
             @mouseenter="(e) => mouseEnter(e, item)"
-            @mouseLeave="mouseLeave"
-            @click='onTabClick(item)'
+            @mouseleave="mouseLeave"
+            @click.stop='onTabClick(item)'
             v-for='(item, index) in showList'
             :key='index'
             :class="{'ml-tab-item': true, 'ml-tab-item-active': item.id === currActive, 'ml-tab-item-disabled': true}"
           >
             <div slot='tab' :tab='item' class='ml-tab-item-slot'>
-              <Icon :type='item.icon ? item.icon : ios-woman'></Icon>
-              <span>{{item.text}}</span>
-              <Icon
-                v-if='showClose(item)'
-                type='ios-close'
-                @click.native.stop='handleRemove(item)'
-              ></Icon>
+              <Icon :type='itemIcon(item)'></Icon>
+              <div>{{item.text}}</div>
             </div>
+          <Icon
+            v-if='showClose(item)'
+            class="ml-tab-item-close"
+            type='ios-close'
+            @click.stop='handleRemove(item)'
+          ></Icon>
           </div>
         </div>
       </div>
@@ -105,10 +106,13 @@ export default {
     }
   },
   methods: {
+    itemIcon (item) {
+      return item.icon ? item.icon : 'ios-unlock-outline'
+    },
     onTabClick(item) {
       if (this.currActive !== item.id) {
         this.currActive = item.id;
-        this.$emit('on-tab-change', item);
+        this.$emit('on-click', item);
       }
     },
     showClose(item) {
@@ -120,7 +124,7 @@ export default {
       );
     },
     handleRemove(item) {
-      this.$emit('on-tab-close');
+      this.$emit('on-tab-remove',item.id);
     },
     mouseEnter (e, item) {
       if(!item.disabled){
@@ -141,6 +145,11 @@ export default {
   border: 1px solid #dcdee2;
   border-bottom: 0;
   border-radius: 4px 4px 0 0;
+  transition: padding-left 0.3s ease-in-out;
+}
+.ml-tab-item:hover{
+  padding: 2px 4px;
+  color:#409EFF;
 }
 .ml-tab-container {
   padding: 0 20px;
@@ -153,13 +162,56 @@ export default {
   transition: all 0.3s ease-in-out;
   display: inline-block;
   height: 28px;
+  line-height: 28px;
   padding: 0px;
   box-sizing: border-box;
-  line-height: 28px;
   list-style: none;
   font-size: 13px;
   color: #303133;
   position: relative;
+}
+.ml-tab-item-slot div{
+  display: inline-block;
+  vertical-align: middle;
+}
+.is-left .ml-tab-item,
+.is-right .ml-tab-item{
+  display: block;
+  padding: 10px 2px;
+  margin-bottom: 5px;
+  border: 1px solid #dcdee2;
+  transition: padding-top 0.3s ease-in-out;
+}
+.is-left .ml-tab-item:hover,
+.is-right .ml-tab-item:hover{
+  padding: 4px 2px;
+}
+.is-left .ml-tab-item-close
+.is-right .ml-tab-item-close{
+  margin-left: 15px;
+}
+.is-left .ml-tab-item{
+  border-right: 0;
+  border-radius: 4px 0px 0px 4px;
+}
+.is-right .ml-tab-item{
+  border-left: 0;
+  border-radius: 0px 4px 4px 0;
+}
+.is-left .ml-tab-item div,
+.is-right .ml-tab-item div{
+  display: block;
+  text-align: center;
+}
+.is-left .ml-tab-item-slot div,
+.is-right .ml-tab-item-slot div{
+  writing-mode: vertical-lr;
+}
+.is-left i,
+.is-right i,
+.is-left .ml-tab-item-slot,
+.is-right .ml-tab-item-slot{
+  height: auto;
 }
 .ml-tab-item.ml-tab-item-active {
   padding: 2px 10px 0px 10px;
@@ -205,20 +257,6 @@ export default {
   margin-bottom: 0;
   margin-left: 10px;
 }
-.is-left .ml-tab-item {
-  transform: rotate(270deg) translate(-5px);
-  -ms-transform: rotate(270deg) translate(-5px); /* Internet Explorer 9*/
-  -moz-transform: rotate(270deg) translate(-5px); /* Firefox */
-  -webkit-transform: rotate(270deg) translate(-5px); /* Safari 和 Chrome */
-  -o-transform: rotate(270deg) translate(-5px); /* Opera */
-}
-.is-right .ml-tab-item {
-  transform: rotate(90deg) translate(5px);
-  -ms-transform: rotate(90deg) translate(5px); /* Internet Explorer 9*/
-  -moz-transform: rotate(90deg) translate(5px); /* Firefox */
-  -webkit-transform: rotate(90deg) translate(5px); /* Safari 和 Chrome */
-  -o-transform: rotate(90deg) translate(5px); /* Opera */
-}
 .is-left .ml-tab-item,
 .is-right .ml-tab-item {
   display: block;
@@ -230,28 +268,46 @@ export default {
   height: 100%;
   padding: 20px 0;
 }
+.is-left .ml-tab-item-scroll,
+.is-right .ml-tab-item-scroll {
+  height: 100%;
+}
 .is-left .ml-tab-container-left,
 .is-right .ml-tab-container-left {
   top: 0;
-  line-height: 45px;
-  transform: rotate(90deg) translate(-11px, -15px);
-  -ms-transform: rotate(90deg) translate(-11px, -15px); /* Internet Explorer 9*/
-  -moz-transform: rotate(90deg) translate(-11px, -15px); /* Firefox */
-  -webkit-transform: rotate(90deg) translate(-11px, -15px); /* Safari 和 Chrome */
-  -o-transform: rotate(90deg) translate(-11px, -15px); /* Opera */
+  transform: rotate(90deg) translateY(-3px);
+  transform-origin: right center;
+  -ms-transform: rotate(90deg) translateY(-3px); /* Internet Explorer 9*/
+  -ms-transform-origin: right center;
+  -moz-transform: rotate(90deg) translateY(-3px); /* Firefox */
+  -moz-transform-origin: right center;
+  -webkit-transform: rotate(90deg) translateY(-3px); /* Safari 和 Chrome */
+  -webkit-transform-origin: right center;
+  -o-transform: rotate(90deg) translateY(-3px); /* Opera */
+  -o-transform-origin: right center;
 }
 .is-left .ml-tab-container-right,
 .is-right .ml-tab-container-right {
   bottom: 0;
-  line-height: 45px;
-  transform: rotate(90deg) translate(15px, 16px);
-  -ms-transform: rotate(90deg) translate(15px, 16px); /* Internet Explorer 9*/
-  -moz-transform: rotate(90deg) translate(15px, 16px); /* Firefox */
-  -webkit-transform: rotate(90deg) translate(15px, 16px); /* Safari 和 Chrome */
-  -o-transform: rotate(90deg) translate(15px, 16px); /* Opera */
+  transform: rotate(90deg) translateY(6px);
+  transform-origin: left center;
+  -ms-transform: rotate(90deg) translateY(6px); /* Internet Explorer 9*/
+  -ms-transform-origin: left center;
+  -moz-transform: rotate(90deg) translateY(6px); /* Firefox */
+  -moz-transform-origin: left center;
+  -webkit-transform: rotate(90deg) translateY(6px); /* Safari 和 Chrome */
+  -webkit-transform-origin: left center;
+  -o-transform: rotate(90deg) translateY(6px); /* Opera */
+  -o-transform-origin: left center;
 }
-.is-left .ml-tab-item-scroll,
-.is-right .ml-tab-item-scroll {
-  height: 100%;
+.ml-tab-item-close:hover{
+  background-color: #C0C4CC;
+  color: #FFFFFF;
+}
+.ml-tab-item-close{
+  font-size: 16px;
+  border-radius: 50%;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 </style>

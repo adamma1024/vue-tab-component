@@ -1,5 +1,5 @@
 {
-  "name": "vue-tabs",
+  "name": "vue-tab-component",
   "version": "1.0.0",
   "description": "easy tabs component",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qq240814476/vue-tabs-demo.git"
+    "url": "git+https://github.com/qq240814476/vue-tab-component.git"
   },
   "author": "malin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/qq240814476/vue-tabs-demo/issues"
+    "url": "https://github.com/qq240814476/vue-tab-component/issues"
   },
-  "homepage": "https://github.com/qq240814476/vue-tabs-demo#readme",
+  "homepage": "https://github.com/qq240814476/vue-tab-component#readme",
   "engines": {
     "node": ">= 10.15.0",
     "npm": ">= 6.0.0"

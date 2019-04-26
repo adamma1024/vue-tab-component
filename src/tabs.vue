@@ -95,11 +95,8 @@ export default {
       this.currActive = this.activeName;
     },
     currActive(val) {
-      this.changeShowList(val);
       this.$emit('on-active-tab-change', val);
-      this.$nextTick(() => {
-        this.scrollToActiveTab();
-      });
+      this.scrollToActiveTab();
     }
   },
   computed: {
@@ -237,9 +234,11 @@ export default {
 }
 .ml-tab-container-left {
   left: 0px;
+  transition: all 0.3s ease-in-out;
 }
 .ml-tab-container-right {
   right: 0px;
+  transition: all 0.3s ease-in-out;
 }
 .ml-tab-item-scroll {
   overflow: hidden;

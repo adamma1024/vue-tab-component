@@ -30,12 +30,8 @@ export default {
     updataShowList (val) {
       if (val <= this.maxnum) {
         this.showList = this.data
-      } else {
-        this.changeShowList(this.currActive)
       }
-      this.$nextTick(() => {
-        this.scrollToActiveTab()
-      })
+      this.scrollToActiveTab()
     },
     changeShowList (val) {
       if (val && this.beginPos !== -1) {

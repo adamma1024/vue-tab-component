@@ -204,8 +204,11 @@ export default {
 .is-left .ml-tab-item div,
 .is-right .ml-tab-item div{
   display: block;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
+  width: 28px;
+  font-size: 13px;
+  line-height: 28px;
 }
 .is-left .ml-tab-item-slot div,
 .is-right .ml-tab-item-slot div{

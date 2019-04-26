@@ -315,7 +315,7 @@ export default {
 .ml-tab-item-close{
   font-size: 16px;
   border-radius: 50%;
-  text-align: center;
+  vertical-align: text-top;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 </style>

@@ -22,12 +22,14 @@
               <Icon :type='itemIcon(item)'></Icon>
               <div>{{item.text}}</div>
             </div>
-          <Icon
-            v-if='showClose(item)'
-            class="ml-tab-item-close"
-            type='ios-close'
-            @click.stop='handleRemove(item)'
-          ></Icon>
+            <div>
+              <Icon
+                v-if='showClose(item)'
+                class="ml-tab-item-close"
+                type='ios-close'
+                @click.stop='handleRemove(item)'
+              ></Icon>
+            </div>
           </div>
         </div>
       </div>
@@ -201,11 +203,13 @@ export default {
 .is-left .ml-tab-item div,
 .is-right .ml-tab-item div{
   display: block;
+  margin: 0 auto;
   text-align: center;
 }
 .is-left .ml-tab-item-slot div,
 .is-right .ml-tab-item-slot div{
   writing-mode: vertical-lr;
+  letter-spacing: 2px;
 }
 .is-left i,
 .is-right i,

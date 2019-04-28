@@ -95,7 +95,6 @@ export default {
       this.currActive = this.activeName;
     },
     currActive(val) {
-      this.$emit('on-active-tab-change', val);
       this.scrollToActiveTab();
     }
   },
@@ -111,7 +110,7 @@ export default {
     onTabClick(item) {
       if (this.currActive !== item.id) {
         this.currActive = item.id;
-        this.$emit('on-click', item);
+        this.$emit('on-click', item.id);
       }
     },
     showClose(item) {
@@ -166,7 +165,6 @@ export default {
   box-sizing: border-box;
   list-style: none;
   font-size: 13px;
-  color: #303133;
   position: relative;
 }
 .ml-tab-item-slot div,

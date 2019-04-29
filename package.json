@@ -10,6 +10,9 @@
     "lint": "./node_modules/.bin/eslint --fix --ext .js,.vue src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qq240814476/vue-tab-component.git"

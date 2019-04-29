@@ -18,9 +18,9 @@
             :key='index'
             :class="{'ml-tab-item': true, 'ml-tab-item-active': item.key === currActive, 'ml-tab-item-disabled': true}"
           >
-            <div slot='tab' :tab='item' class='ml-tab-item-slot'>
+            <slot name='tab' :tab='item' class='ml-tab-item-slot'>
               <div>{{item.title}}</div>
-            </div>
+            </slot>
             <div class="ml-tab-item-close-div">
               <Icon
                 v-if='showClose(item)'

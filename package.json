@@ -1,6 +1,6 @@
 {
   "name": "vue-tab-component",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "easy tabs component",
   "main": "dist/vue-tabs.min.js",
   "scripts": {

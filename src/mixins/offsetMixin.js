@@ -6,6 +6,21 @@ export default {
       }
     }
   },
+  computed: {
+    showContainerBar () {
+      let nav = ''
+      let container = ''
+      this.$nextTick(() => {
+        nav = this.isHorizontal
+          ? this.$refs.nav.offsetWidth
+          : this.$refs.nav.offsetHeight
+        container = this.isHorizontal
+          ? this.$refs.navScroll.offsetWidth
+          : this.$refs.navScroll.offsetHeight
+      })
+      return nav === container
+    }
+  },
   watch: {
     tabPosition (val, old) {
       if (

@@ -49,7 +49,7 @@ Vue.use(tabs)
 
 | Name             | Description                                           | Type    | Default |
 | :--------------- | :---------------------------------------------------- | :------ | :------ |
-| data             | data of tab    {id:'id',text:'word'}                  | Array   | []      |
+| data             | data of tab    {id:'id',title:'word'}                 | Array   | []      |
 | tabPosition      | tab' position, one of ['top','bottom','left','right'] | String  | bottom  |
 | type             | css type, one of ['card','line']                      | String  | line    |
 | closable         | if tab can delete                                     | Boolean | false   |

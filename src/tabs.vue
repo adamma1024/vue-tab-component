@@ -1,10 +1,10 @@
 <template>
   <div :class='mainClass'>
     <div class='ml-tab-container'>
-      <span class='ml-tab-container-left' slot='left-icon' @click='scrollPrev'>
+      <span :class='{"ml-tab-container-left": true, "hide-bar": showContainerBar}' slot='left-icon' @click='scrollPrev'>
         <Icon type='ios-arrow-back'/>
       </span>
-      <span class='ml-tab-container-right' slot='right-icon' @click='scrollNext'>
+      <span :class='{"ml-tab-container-right": true, "hide-bar": showContainerBar}' slot='right-icon' @click='scrollNext'>
         <Icon type='ios-arrow-forward'/>
       </span>
 
@@ -20,7 +20,7 @@
           >
             <div slot='tab' :tab='item' class='ml-tab-item-slot'>
               <Icon :type='itemIcon(item)'></Icon>
-              <div>{{item.text}}</div>
+              <div>{{item.title}}</div>
             </div>
             <div class="ml-tab-item-close-div">
               <Icon
@@ -142,4 +142,7 @@ export default {
 <style scoped>
 @import './css/card.css';
 @import './css/line.css';
+.hide-bar{
+  display: none;
+}
 </style>

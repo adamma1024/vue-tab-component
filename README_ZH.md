@@ -49,7 +49,7 @@ Vue.use(tabs)
 
 | 属性名           | 描述                                         | 类型    | 默认值 |
 | :--------------- | :------------------------------------------- | :------ | :----- |
-| data             | tab的数据    {id:'id',text:'文字'}           | Array   | []     |
+| data             | tab的数据    {id:'id',title:'文字'}          | Array   | []     |
 | tabPosition      | tab位置,总共有四种: top、bottom、left、right | String  | bottom |
 | type             | 样式种类，有card、line 两种                  | String  | line   |
 | closable         | 是否可删除tab                                | Boolean | false  |

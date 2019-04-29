@@ -24,6 +24,20 @@
     "node": ">= 10.15.0",
     "npm": ">= 6.0.0"
   },
+  "keywords": [
+    "vue-tab",
+    "vue-tab-component",
+    "DOM render",
+    "light tab",
+    "ml",
+    "left-tab",
+    "right-tab",
+    "tabPosition",
+    "left",
+    "right",
+    "vue",
+    "vue-components"
+  ],
   "dependencies": {
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10",

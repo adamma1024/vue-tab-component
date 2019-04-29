@@ -2,7 +2,7 @@ export default {
   props: {
     maxnum: {
       type: Number,
-      default: 50
+      default: 20
     }
   },
   data () {

@@ -71,10 +71,6 @@ export default {
       type: Boolean,
       default: false
     },
-    addable: {
-      type: Boolean,
-      default: false
-    },
     stretch: {
       type: Boolean,
       default: false

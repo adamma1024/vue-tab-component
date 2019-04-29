@@ -49,11 +49,11 @@ Vue.use(tabs)
 
 | 属性名           | 描述                                         | 类型    | 默认值 |
 | :--------------- | :------------------------------------------- | :------ | :----- |
-| data             | tab的数据    {id:'id',title:'文字'}          | Array   | []     |
+| data             | tab的数据    {key:'key',title:'文字'}        | Array   | []     |
 | tabPosition      | tab位置,总共有四种: top、bottom、left、right | String  | bottom |
 | type             | 样式种类，有card、line 两种                  | String  | line   |
 | closable         | 是否可删除tab                                | Boolean | false  |
-| activeName       | 当前激活状态的id                             | String  | ''     |
+| activeName       | 当前激活状态的key                            | String  | ''     |
 | maxnum           | 最多渲染多少tab，用以解决大数据量tab         | Number  | 20     |
 | stretch （todo） | 是否根据tab内容长度伸缩                      | Boolean | false  |
 
@@ -69,10 +69,10 @@ Vue.use(tabs)
 
 **事件**
 
-| 事件名        | 描述                         | 参数       |
-| ------------- | ---------------------------- | ---------- |
-| on-click      | 当tab点击时触发，返回tab的id | id tab的id |
-| on-tab-remove | 当删除tab时触发，返回tab的id | id tab的id |
+| 事件名        | 描述                          | 参数         |
+| ------------- | ----------------------------- | ------------ |
+| on-click      | 当tab点击时触发，返回tab的key | key tab的key |
+| on-tab-remove | 当删除tab时触发，返回tab的key | key tab的key |
 
 
 

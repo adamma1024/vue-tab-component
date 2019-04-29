@@ -16,7 +16,7 @@
             @click.stop='onTabClick(item)'
             v-for='(item, index) in showList'
             :key='index'
-            :class="{'ml-tab-item': true, 'ml-tab-item-active': item.id === currActive, 'ml-tab-item-disabled': true}"
+            :class="{'ml-tab-item': true, 'ml-tab-item-active': item.key === currActive, 'ml-tab-item-disabled': true}"
           >
             <div slot='tab' :tab='item' class='ml-tab-item-slot'>
               <Icon :type='itemIcon(item)'></Icon>
@@ -112,9 +112,9 @@ export default {
       return item.icon ? item.icon : 'ios-unlock-outline'
     },
     onTabClick(item) {
-      if (this.currActive !== item.id) {
-        this.currActive = item.id;
-        this.$emit('on-click', item.id);
+      if (this.currActive !== item.key) {
+        this.currActive = item.key;
+        this.$emit('on-click', item.key);
       }
     },
     showClose(item) {
@@ -122,15 +122,15 @@ export default {
         !item.disabled &&
         this.closable &&
         this.type === 'card' &&
-        (this.currActive === item.id || this.hoverId === item.id)
+        (this.currActive === item.key || this.hoverId === item.key)
       );
     },
     handleRemove(item) {
-      this.$emit('on-tab-remove',item.id);
+      this.$emit('on-tab-remove',item.key);
     },
     mouseEnter (e, item) {
       if(!item.disabled){
-        this.hoverId = item.id
+        this.hoverId = item.key
       }
     },
     mouseLeave () {

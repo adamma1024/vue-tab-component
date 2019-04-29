@@ -47,15 +47,16 @@ Vue.use(tabs)
 
 **属性**
 
-| 属性名           | 描述                                         | 类型    | 默认值 |
-| :--------------- | :------------------------------------------- | :------ | :----- |
-| data             | tab的数据    {key:'key',title:'文字'}        | Array   | []     |
-| tabPosition      | tab位置,总共有四种: top、bottom、left、right | String  | bottom |
-| type             | 样式种类，有card、line 两种                  | String  | line   |
-| closable         | 是否可删除tab                                | Boolean | false  |
-| activeName       | 当前激活状态的key                            | String  | ''     |
-| maxnum           | 最多渲染多少tab，用以解决大数据量tab         | Number  | 20     |
-| stretch （todo） | 是否根据tab内容长度伸缩                      | Boolean | false  |
+| 属性名           | 描述                                                | 类型     | 默认值        |
+| :--------------- | :-------------------------------------------------- | :------- | :------------ |
+| data             | tab的数据    {key:'key',title:'文字'}               | Array    | []            |
+| tabPosition      | tab位置,总共有四种: top、bottom、left、right        | String   | bottom        |
+| type             | 样式种类，有card、line 两种                         | String   | line          |
+| closable         | 是否可删除tab                                       | Boolean  | false         |
+| activeName       | 当前激活状态的key                                   | String   | ''            |
+| maxnum           | 最多渲染多少tab，用以解决大数据量tab                | Number   | 20            |
+| beforeChangeTab  | 参数是key，切换tab之前，可以返回boolean值，阻止切换 | Function | (key) => true |
+| stretch （todo） | 是否根据tab内容长度伸缩                             | Boolean  | false         |
 
 **方法**
 

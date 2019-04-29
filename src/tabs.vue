@@ -19,7 +19,6 @@
             :class="{'ml-tab-item': true, 'ml-tab-item-active': item.key === currActive, 'ml-tab-item-disabled': true}"
           >
             <div slot='tab' :tab='item' class='ml-tab-item-slot'>
-              <Icon :type='itemIcon(item)'></Icon>
               <div>{{item.title}}</div>
             </div>
             <div class="ml-tab-item-close-div">
@@ -78,6 +77,10 @@ export default {
     activeName: {
       type: String,
       default: ''
+    },
+    beforeChangeTab: {
+      type: Function,
+      default: () => true
     }
   },
   data() {
@@ -113,8 +116,10 @@ export default {
     },
     onTabClick(item) {
       if (this.currActive !== item.key) {
-        this.currActive = item.key;
-        this.$emit('on-click', item.key);
+        if(this.beforeChangeTab()){
+          this.currActive = item.key;
+          this.$emit('on-click', item.key);
+        }
       }
     },
     showClose(item) {

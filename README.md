@@ -47,15 +47,16 @@ Vue.use(tabs)
 
 **Attribute**
 
-| Name             | Description                                           | Type    | Default |
-| :--------------- | :---------------------------------------------------- | :------ | :------ |
-| data             | data of tab    {key:'key',title:'word'}               | Array   | []      |
-| tabPosition      | tab' position, one of ['top','bottom','left','right'] | String  | bottom  |
-| type             | css type, one of ['card','line']                      | String  | line    |
-| closable         | if tab can delete                                     | Boolean | false   |
-| activeName       | active tab's key                                      | String  | ''      |
-| maxnum           | max number of DOM render tab at once                  | Number  | 20      |
-| stretch （todo） | if tab stretchable because of content                 | Boolean | false   |
+| Name             | Description                                           | Type     | Default       |
+| :--------------- | :---------------------------------------------------- | :------- | :------------ |
+| data             | data of tab    {key:'key',title:'word'}               | Array    | []            |
+| tabPosition      | tab' position, one of ['top','bottom','left','right'] | String   | bottom        |
+| type             | css type, one of ['card','line']                      | String   | line          |
+| closable         | if tab can delete                                     | Boolean  | false         |
+| activeName       | active tab's key                                      | String   | ''            |
+| maxnum           | max number of DOM render tab at once                  | Number   | 20            |
+| beforeChangeTab  | param: key, tab won't change when return false        | Function | (key) => true |
+| stretch （todo） | if tab stretchable because of content                 | Boolean  | false         |
 
 **Method**
 

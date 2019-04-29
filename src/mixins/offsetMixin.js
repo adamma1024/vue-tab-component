@@ -22,6 +22,9 @@ export default {
       ) {
         this.goBegin()
       }
+      if ((val === 'left' || val === 'right') && this.type !== 'card') {
+        this.tabPosition = 'bottom'
+      }
     }
   },
   methods: {
@@ -81,7 +84,7 @@ export default {
         : this.setOffset(0, newOffset)
     },
     scrollToActiveTab () {
-      this.changeShowList(this.currActive)
+      this.changeShowList(!this.currActive && this.data[0] ? this.data[0].id : this.currActive)
       this.$nextTick(() => {
         const nav = this.$refs.nav
         const activeTab = this.$el.querySelector('.ml-tab-item-active')
@@ -105,13 +108,13 @@ export default {
               currentOffset + activeTabBounding.right - navScrollBounding.right
           }
         } else {
-          if (activeTabBounding.top < navScrollBounding.bottom) {
+          if (activeTabBounding.top < navScrollBounding.top) {
             newOffset =
-              currentOffset - (navScrollBounding.top - activeTabBounding.bottom)
+              currentOffset - (navScrollBounding.top - activeTabBounding.top)
           }
-          if (activeTabBounding.top > navScrollBounding.bottom) {
+          if (activeTabBounding.bottom > navScrollBounding.bottom) {
             newOffset =
-              currentOffset + activeTabBounding.bottom - navScrollBounding.top
+              currentOffset + activeTabBounding.bottom - navScrollBounding.bottom
           }
         }
 
@@ -136,19 +139,23 @@ export default {
       if (this.dataLength > 50) {
         this.showList = this.data.slice(0, this.maxnum)
       }
-      this.setOffset(0, 0)
+      this.$nextTick(() => {
+        this.setOffset(0, 0)
+      })
     },
     goEnd () {
       if (this.dataLength > 50) {
         this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
       }
-      const nav = this.$refs.nav
-      const navScroll = this.$refs.navScroll
-      const navScrollBounding = navScroll.getBoundingClientRect()
-      const maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
-      this.isHorizontal
-        ? this.setOffset(maxOffset, 0)
-        : this.setOffset(0, maxOffset)
+      this.$nextTick(() => {
+        const nav = this.$refs.nav
+        const navScroll = this.$refs.navScroll
+        const navScrollBounding = navScroll.getBoundingClientRect()
+        const maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
+        this.isHorizontal
+          ? this.setOffset(maxOffset, 0)
+          : this.setOffset(0, maxOffset)
+      })
     }
   }
 }

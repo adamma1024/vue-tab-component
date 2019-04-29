@@ -34,17 +34,15 @@ export default {
       this.scrollToActiveTab()
     },
     changeShowList (val) {
-      if (val && this.beginPos !== -1) {
-        let index = this.data.findIndex((obj) => obj.id === val)
-        if (index !== -1) {
-          let length = this.dataLength
-          if (index <= this.maxnum / 2) {
-            this.showList = this.data.slice(0, this.maxnum)
-          } else if ((length - index) >= (this.maxnum / 2)) {
-            this.showList = this.data.slice(index - this.maxnum / 2, index + (this.maxnum - this.maxnum / 2))
-          } else {
-            this.showList = this.data.slice(length - this.maxnum, length)
-          }
+      let index = this.data.findIndex((obj) => obj.id === val)
+      if (index !== -1) {
+        let length = this.dataLength
+        if (index <= this.maxnum / 2) {
+          this.showList = this.data.slice(0, this.maxnum)
+        } else if ((length - index) >= (this.maxnum / 2)) {
+          this.showList = this.data.slice(index - this.maxnum / 2, index + (this.maxnum - this.maxnum / 2))
+        } else {
+          this.showList = this.data.slice(length - this.maxnum, length)
         }
       }
     }

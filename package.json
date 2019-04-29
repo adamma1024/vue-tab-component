@@ -2,7 +2,7 @@
   "name": "vue-tab-component",
   "version": "1.0.0",
   "description": "easy tabs component",
-  "main": "index.js",
+  "main": "dist/vue-tabs.min.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build:dev": "node ./build/build.dev.js",

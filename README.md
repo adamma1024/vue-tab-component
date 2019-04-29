@@ -75,7 +75,11 @@ Vue.use(tabs)
 | on-click      | when tab on clicking, return tab's key | key tab's key |
 | on-tab-remove | when tab on deleting, return tab's key | key tab's key |
 
+**slot**
 
+| name | data                  | exemple                                                                                     |
+| ---- | --------------------- | ------------------------------------------------------------------------------------------- |
+| tab  | slotProps：tab's data | <template slot="tab" v-slot:tab="slotProps"><Icon :type="slotProps.icon"></Icon></template> |
 
 
 **License**

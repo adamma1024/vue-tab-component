@@ -75,7 +75,11 @@ Vue.use(tabs)
 | on-click      | 当tab点击时触发，返回tab的key | key tab的key |
 | on-tab-remove | 当删除tab时触发，返回tab的key | key tab的key |
 
+**插槽**
 
+| 插槽名 | 数据                   | 例子                                                                                        |
+| ------ | ---------------------- | ------------------------------------------------------------------------------------------- |
+| tab    | slotProps：单个tab数据 | <template slot="tab" v-slot:tab="slotProps"><Icon :type="slotProps.icon"></Icon></template> |
 
 
 **License**

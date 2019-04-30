@@ -79,7 +79,7 @@ Vue.use(tabs)
 
 | 插槽名 | 数据             | 例子                                                                      |
 | ------ | ---------------- | ------------------------------------------------------------------------- |
-| tab    | tab：单个tab数据 | <template v-slot:tab="tab"><Icon :type="tab.data.icon"></Icon></template> |
+| tab    | tab：单个tab数据 | <template #tab="{ data }"><Icon :type="data.icon"></Icon></template> |
 
 
 **License**

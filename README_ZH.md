@@ -77,9 +77,9 @@ Vue.use(tabs)
 
 **插槽**
 
-| 插槽名 | 数据                   | 例子                                                                                        |
-| ------ | ---------------------- | ------------------------------------------------------------------------------------------- |
-| tab    | slotProps：单个tab数据 | <template slot="tab" v-slot:tab="slotProps"><Icon :type="slotProps.icon"></Icon></template> |
+| 插槽名 | 数据             | 例子                                                                 |
+| ------ | ---------------- | -------------------------------------------------------------------- |
+| tab    | tab：单个tab数据 | <template v-slot:tab="tab"><Icon :type="tab.icon"></Icon></template> |
 
 
 **License**

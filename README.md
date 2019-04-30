@@ -77,9 +77,9 @@ Vue.use(tabs)
 
 **slot**
 
-| name | data       | exemple                                                              |
-| ---- | ---------- | -------------------------------------------------------------------- |
-| tab  | tab's data | <template v-slot:tab="tab"><Icon :type="tab.icon"></Icon></template> |
+| name | data       | exemple                                                                   |
+| ---- | ---------- | ------------------------------------------------------------------------- |
+| tab  | tab's data | <template v-slot:tab="tab"><Icon :type="tab.data.icon"></Icon></template> |
 
 
 **License**

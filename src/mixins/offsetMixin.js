@@ -151,7 +151,7 @@ export default {
       this.navStyle.transform = `translate(-${x}px, -${y}px)`
     },
     goBegin () {
-      if (this.dataLength > 50) {
+      if (this.dataLength > this.maxnum) {
         this.showList = this.data.slice(0, this.maxnum)
       }
       this.$nextTick(() => {
@@ -159,7 +159,7 @@ export default {
       })
     },
     goEnd () {
-      if (this.dataLength > 50) {
+      if (this.dataLength > this.maxnum) {
         this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
       }
       this.$nextTick(() => {

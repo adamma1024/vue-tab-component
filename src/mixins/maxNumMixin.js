@@ -9,7 +9,7 @@ export default {
     return {
       dataLength: this.data.length,
       showList: this.dataLength <= this.maxnum ? this.data : this.data.slice(0, this.maxnum),
-      hideContainerBar: false
+      hideContainerBar: true
     }
   },
   watch: {
@@ -62,5 +62,8 @@ export default {
         this.hideContainerBar = nav <= container
       })
     }
+  },
+  mounted () {
+    this.isHideLRIcon()
   }
 }

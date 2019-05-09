@@ -8,13 +8,16 @@ export default {
   data () {
     return {
       dataLength: this.data.length,
-      showList: this.dataLength <= this.maxnum ? this.data : this.data.slice(0, this.maxnum)
+      showList: this.dataLength <= this.maxnum ? this.data : this.data.slice(0, this.maxnum),
+      hideContainerBar: false
     }
   },
   watch: {
     'data.length' (val) {
       this.dataLength = val
       this.updataShowList(val)
+      // 是否隐藏向左向右箭头
+      this.isHideLRIcon()
     }
   },
   computed: {
@@ -45,6 +48,19 @@ export default {
           this.showList = this.data.slice(length - this.maxnum, length)
         }
       }
+    },
+    isHideLRIcon () {
+      let nav = ''
+      let container = ''
+      this.$nextTick(() => {
+        nav = this.isHorizontal
+          ? this.$refs.nav.offsetWidth
+          : this.$refs.nav.offsetHeight
+        container = this.isHorizontal
+          ? this.$refs.navScroll.offsetWidth
+          : this.$refs.navScroll.offsetHeight
+        this.hideContainerBar = nav === container
+      })
     }
   }
 }

@@ -8,7 +8,6 @@
   color:#5b87a5;
 }
 .line .ml-tab-container {
-  padding: 0 20px;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -29,6 +28,10 @@
 .line .ml-tab-item-close-div{
   display: inline-block;
   vertical-align: middle;
+}
+.line .ml-tab-item-close-div{
+  width: 16px;
+  line-height: 16px;
 }
 .line .ml-tab-item.ml-tab-item-active {
   padding: 2px 10px 0px 10px;

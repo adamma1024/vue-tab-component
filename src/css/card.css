@@ -14,7 +14,6 @@
   color:#5b87a5;
 }
 .card .ml-tab-container {
-  padding: 0 20px;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -35,6 +34,10 @@
 .card .ml-tab-item-close-div{
   display: inline-block;
   vertical-align: middle;
+}
+.card .ml-tab-item-close-div{
+  width: 16px;
+  line-height: 16px;
 }
 .is-left .ml-tab-item,
 .is-right .ml-tab-item{
@@ -72,6 +75,7 @@
 .is-left .ml-tab-item-slot div,
 .is-right .ml-tab-item-slot div{
   writing-mode: vertical-lr;
+  writing-mode: tb-lr;
   letter-spacing: 2px;
 }
 .is-left i,
@@ -145,7 +149,6 @@
 .is-left .ml-tab-container,
 .is-right .ml-tab-container {
   height: 100%;
-  padding: 20px 0;
 }
 .is-left .ml-tab-item-scroll,
 .is-right .ml-tab-item-scroll {

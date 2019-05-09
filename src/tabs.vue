@@ -1,10 +1,10 @@
 <template>
   <div :class='mainClass'>
-    <div class='ml-tab-container'>
-      <span :class='{"ml-tab-container-left": true, "hide-bar": showContainerBar}' slot='left-icon' @click='scrollPrev'>
+    <div class='ml-tab-container' :style="containerPadding">
+      <span :class='{"ml-tab-container-left": true, "hide-bar": hideContainerBar}' slot='left-icon' @click='scrollPrev'>
         <Icon type='ios-arrow-back'/>
       </span>
-      <span :class='{"ml-tab-container-right": true, "hide-bar": showContainerBar}' slot='right-icon' @click='scrollNext'>
+      <span :class='{"ml-tab-container-right": true, "hide-bar": hideContainerBar}' slot='right-icon' @click='scrollNext'>
         <Icon type='ios-arrow-forward'/>
       </span>
 
@@ -110,6 +110,15 @@ export default {
         'card': this.type === 'card',
         'line': this.type === 'line',
       }
+    },
+    containerPadding () {
+      let style = {
+        padding: '0px'
+      }
+      if(!this.hideContainerBar){
+        style.padding = isHorizontal ? '0 20px' : '20px 0'
+      }
+      return style
     }
   },
   methods: {

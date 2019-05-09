@@ -10,7 +10,6 @@
   transition: padding-left 0.3s ease-in-out;
 }
 .card .ml-tab-item:hover{
-  padding: 2px 4px;
   color:#5b87a5;
 }
 .card .ml-tab-container {
@@ -46,10 +45,6 @@
   margin-bottom: 5px;
   border: 1px solid #dcdee2;
   transition: padding-top 0.3s ease-in-out;
-}
-.is-left .ml-tab-item:hover,
-.is-right .ml-tab-item:hover{
-  padding: 4px 2px;
 }
 .is-left .ml-tab-item-close
 .is-right .ml-tab-item-close{
@@ -90,12 +85,12 @@
   border-bottom: 2px solid #5b87a5;
 }
 .is-left .ml-tab-item.ml-tab-item-active {
-  padding: 2px 0px 5px 2px;
+  padding: 5px 0px 5px 2px;
   border-right: 2px solid #5b87a5;
   border-bottom: 1px solid #dcdee2;
 }
 .is-right .ml-tab-item.ml-tab-item-active {
-  padding: 2px 2px 5px 0px;
+  padding: 5px 2px 5px 0px;
   border-left: 2px solid #5b87a5;
   border-bottom: 1px solid #dcdee2;
 }
@@ -143,7 +138,6 @@
 .is-left .ml-tab-item,
 .is-right .ml-tab-item {
   display: block;
-  margin-bottom: 10px;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 .is-left .ml-tab-container,

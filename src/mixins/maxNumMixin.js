@@ -52,14 +52,14 @@ export default {
     isHideLRIcon () {
       let nav = ''
       let container = ''
-      this.$nextTick(() => {
+      setTimeout(() => {
         nav = this.isHorizontal
           ? this.$refs.nav.offsetWidth
           : this.$refs.nav.offsetHeight
         container = this.isHorizontal
           ? this.$refs.navScroll.offsetWidth
           : this.$refs.navScroll.offsetHeight
-        this.hideContainerBar = nav === container
+        this.hideContainerBar = nav <= container
       })
     }
   }

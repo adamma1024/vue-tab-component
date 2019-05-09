@@ -23,9 +23,8 @@
                 <div>{{item.title}}</div>
               </slot>
             </div>
-            <div class="ml-tab-item-close-div">
+            <div v-if='showClose(item)' class="ml-tab-item-close-div">
               <Icon
-                v-if='showClose(item)'
                 class="ml-tab-item-close"
                 type='ios-close'
                 @click.stop='handleRemove(item)'
@@ -116,7 +115,7 @@ export default {
         padding: '0px'
       }
       if(!this.hideContainerBar){
-        style.padding = isHorizontal ? '0 20px' : '20px 0'
+        style.padding = this.isHorizontal ? '0 20px' : '20px 0'
       }
       return style
     }

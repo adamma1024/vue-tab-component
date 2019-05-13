@@ -96,6 +96,12 @@ export default {
     },
     currActive(val) {
       this.scrollToActiveTab();
+    },
+    data: {
+      deep:true,
+      handler: function(val){
+        this.showList = this.dataLength <= this.maxnum ? val : val.slice(0, this.maxnum)
+      }
     }
   },
   computed: {

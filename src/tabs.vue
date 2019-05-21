@@ -166,4 +166,7 @@ export default {
 .hide-bar{
   display: none;
 }
+.ml-tab-item{
+  cursor: pointer;
+}
 </style>

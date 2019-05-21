@@ -82,6 +82,10 @@ export default {
     beforeChangeTab: {
       type: Function,
       default: () => true
+    },
+    hideLeftRightBar: {
+      type: Boolean,
+      default: () => false
     }
   },
   data() {

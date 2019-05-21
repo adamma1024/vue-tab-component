@@ -50,17 +50,21 @@ export default {
       }
     },
     isHideLRIcon () {
-      let nav = ''
-      let container = ''
-      setTimeout(() => {
-        nav = this.isHorizontal
-          ? this.$refs.nav.offsetWidth
-          : this.$refs.nav.offsetHeight
-        container = this.isHorizontal
-          ? this.$refs.navScroll.offsetWidth
-          : this.$refs.navScroll.offsetHeight
-        this.hideContainerBar = nav <= container
-      })
+      if (this.hideLeftRightBar) {
+        this.hideContainerBar = true
+      } else {
+        let nav = ''
+        let container = ''
+        setTimeout(() => {
+          nav = this.isHorizontal
+            ? this.$refs.nav.offsetWidth
+            : this.$refs.nav.offsetHeight
+          container = this.isHorizontal
+            ? this.$refs.navScroll.offsetWidth
+            : this.$refs.navScroll.offsetHeight
+          this.hideContainerBar = nav <= container
+        })
+      }
     }
   },
   mounted () {

@@ -57,6 +57,7 @@ Vue.use(tabs)
 | maxnum           | 最多渲染多少tab，用以解决大数据量tab                | Number   | 20            |
 | beforeChangeTab  | 参数是key，切换tab之前，可以返回boolean值，阻止切换 | Function | (key) => true |
 | stretch （todo） | 是否根据tab内容长度伸缩                             | Boolean  | false         |
+| hideDirectionBar | 是否隐藏左右方向图标                                | Boolean  | false         |
 
 **方法**
 
@@ -77,8 +78,8 @@ Vue.use(tabs)
 
 **插槽**
 
-| 插槽名 | 数据             | 例子                                                                      |
-| ------ | ---------------- | ------------------------------------------------------------------------- |
+| 插槽名 | 数据             | 例子                                                                 |
+| ------ | ---------------- | -------------------------------------------------------------------- |
 | tab    | tab：单个tab数据 | <template #tab="{ data }"><Icon :type="data.icon"></Icon></template> |
 
 

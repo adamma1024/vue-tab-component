@@ -57,6 +57,7 @@ Vue.use(tabs)
 | maxnum           | max number of DOM render tab at once                  | Number   | 20            |
 | beforeChangeTab  | param: key, tab won't change when return false        | Function | (key) => true |
 | stretch （todo） | if tab stretchable because of content                 | Boolean  | false         |
+| hideDirectionBar    | if tab's left/right bar show or hide                  | Boolean  | false         |
 
 **Method**
 
@@ -77,8 +78,8 @@ Vue.use(tabs)
 
 **slot**
 
-| name | data       | exemple                                                                   |
-| ---- | ---------- | ------------------------------------------------------------------------- |
+| name | data       | exemple                                                              |
+| ---- | ---------- | -------------------------------------------------------------------- |
 | tab  | tab's data | <template #tab="{ data }"><Icon :type="data.icon"></Icon></template> |
 
 

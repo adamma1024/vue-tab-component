@@ -50,7 +50,7 @@ export default {
       }
     },
     isHideLRIcon () {
-      if (this.hideLeftRightBar) {
+      if (this.hideDriectionBar) {
         this.hideContainerBar = true
       } else {
         let nav = ''

@@ -83,7 +83,7 @@ export default {
       type: Function,
       default: () => true
     },
-    hideLeftRightBar: {
+    hideDriectionBar: {
       type: Boolean,
       default: () => false
     }

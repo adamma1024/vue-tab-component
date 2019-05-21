@@ -18,6 +18,9 @@ export default {
       this.updataShowList(val)
       // 是否隐藏向左向右箭头
       this.isHideLRIcon()
+    },
+    hideDirectionBar () {
+      this.isHideLRIcon()
     }
   },
   computed: {
@@ -50,7 +53,7 @@ export default {
       }
     },
     isHideLRIcon () {
-      if (this.hideDriectionBar) {
+      if (this.hideDirectionBar) {
         this.hideContainerBar = true
       } else {
         let nav = ''

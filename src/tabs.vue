@@ -83,9 +83,9 @@ export default {
       type: Function,
       default: () => true
     },
-    hideDriectionBar: {
+    hideDirectionBar: {
       type: Boolean,
-      default: () => false
+      default: false
     }
   },
   data() {

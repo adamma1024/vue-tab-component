@@ -33,17 +33,16 @@ export default {
     }
   },
   methods: {
-    updataShowList (val) {
-      if (val <= this.maxnum) {
-        this.showList = this.data
-      }
+    updataShowList () {
       this.scrollToActiveTab()
     },
     changeShowList (val) {
       let index = this.data.findIndex((obj) => obj.id === val)
       if (index !== -1) {
         let length = this.dataLength
-        if (index <= this.maxnum / 2) {
+        if (length <= this.maxnum) {
+          this.showList = this.data
+        } else if (index <= this.maxnum / 2) {
           this.showList = this.data.slice(0, this.maxnum)
         } else if ((length - index) >= (this.maxnum / 2)) {
           this.showList = this.data.slice(index - this.maxnum / 2, index + (this.maxnum - this.maxnum / 2))

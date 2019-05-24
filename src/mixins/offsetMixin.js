@@ -92,7 +92,10 @@ export default {
         const navScroll = this.$refs.navScroll
         const activeTabBounding = activeTab.getBoundingClientRect()
         const navScrollBounding = navScroll.getBoundingClientRect()
-        const maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
+        let maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
+        if (maxOffset < 0) {
+          maxOffset = 0
+        }
         const currentOffset = this.isHorizontal
           ? this.getCurrentScrollOffset()
           : this.getCurrentScrollOffset(2)
@@ -151,7 +154,10 @@ export default {
         const nav = this.$refs.nav
         const navScroll = this.$refs.navScroll
         const navScrollBounding = navScroll.getBoundingClientRect()
-        const maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
+        let maxOffset = this.isHorizontal ? nav.offsetWidth - navScrollBounding.width : nav.offsetHeight - navScrollBounding.height
+        if (maxOffset < 0) {
+          maxOffset = 0
+        }
         this.isHorizontal
           ? this.setOffset(maxOffset, 0)
           : this.setOffset(0, maxOffset)

@@ -136,9 +136,9 @@ export default {
     },
     onTabClick(item) {
       if (this.currActive !== item.key) {
+      this.$emit('on-click', item.key);
         if(this.beforeChangeTab()){
           this.currActive = item.key;
-          this.$emit('on-click', item.key);
         }
       }
     },

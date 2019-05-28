@@ -9,6 +9,7 @@
 }
 .line .ml-tab-container {
   position: relative;
+  overflow: hidden;
   white-space: nowrap;
   transition: all 0.3s ease-in-out;
 }

@@ -1,6 +1,6 @@
 {
   "name": "vue-tab-component",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "easy tabs component",
   "main": "dist/vue-tabs.min.js",
   "scripts": {
@@ -41,6 +41,9 @@
     "vue",
     "vue-components"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10",

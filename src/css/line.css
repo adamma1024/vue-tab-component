@@ -55,6 +55,7 @@
   transition: all 0.3s ease-in-out;
 }
 .line .ml-tab-item-scroll {
+  overflow: hidden;
   white-space: nowrap;
 }
 .line .ml-tab-item-scroll-nav {

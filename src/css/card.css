@@ -111,6 +111,7 @@
   transition: all 0.3s ease-in-out;
 }
 .ml-tab-item-scroll {
+  overflow: hidden;
   white-space: nowrap;
 }
 .ml-tab-item-scroll-nav {

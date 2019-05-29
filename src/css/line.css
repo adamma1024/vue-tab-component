@@ -64,7 +64,7 @@
   list-style: none;
   transition: all 0.3s ease-in-out;
 }
-.line .is-bottom {
+.line .ml-tab-is-bottom {
   margin-bottom: 0;
 }
 .line .ml-tab-item-close:hover{

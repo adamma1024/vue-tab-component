@@ -38,28 +38,28 @@
   width: 16px;
   line-height: 16px;
 }
-.is-left .ml-tab-item,
-.is-right .ml-tab-item{
+.ml-tab-is-left .ml-tab-item,
+.ml-tab-is-right .ml-tab-item{
   display: block;
   padding: 5px 2px;
   margin-bottom: 5px;
   border: 1px solid #dcdee2;
   transition: padding-top 0.3s ease-in-out;
 }
-.is-left .ml-tab-item-close
-.is-right .ml-tab-item-close{
+.ml-tab-is-left .ml-tab-item-close
+.ml-tab-is-right .ml-tab-item-close{
   margin-left: 15px;
 }
-.is-left .ml-tab-item{
+.ml-tab-is-left .ml-tab-item{
   border-right: 0;
   border-radius: 4px 0px 0px 4px;
 }
-.is-right .ml-tab-item{
+.ml-tab-is-right .ml-tab-item{
   border-left: 0;
   border-radius: 0px 4px 4px 0;
 }
-.is-left .ml-tab-item div,
-.is-right .ml-tab-item div{
+.ml-tab-is-left .ml-tab-item div,
+.ml-tab-is-right .ml-tab-item div{
   display: block;
   margin: auto;
   text-align: center;
@@ -67,16 +67,16 @@
   font-size: 13px;
   line-height: 28px;
 }
-.is-left .ml-tab-item-slot div,
-.is-right .ml-tab-item-slot div{
+.ml-tab-is-left .ml-tab-item-slot div,
+.ml-tab-is-right .ml-tab-item-slot div{
   writing-mode: vertical-lr;
   writing-mode: tb-lr;
   letter-spacing: 2px;
 }
-.is-left i,
-.is-right i,
-.is-left .ml-tab-item-slot,
-.is-right .ml-tab-item-slot{
+.ml-tab-is-left i,
+.ml-tab-is-right i,
+.ml-tab-is-left .ml-tab-item-slot,
+.ml-tab-is-right .ml-tab-item-slot{
   height: auto;
 }
 .ml-tab-item.ml-tab-item-active {
@@ -84,12 +84,12 @@
   color: #5b87a5;
   border-bottom: 2px solid #5b87a5;
 }
-.is-left .ml-tab-item.ml-tab-item-active {
+.ml-tab-is-left .ml-tab-item.ml-tab-item-active {
   padding: 5px 0px 5px 2px;
   border-right: 2px solid #5b87a5;
   border-bottom: 1px solid #dcdee2;
 }
-.is-right .ml-tab-item.ml-tab-item-active {
+.ml-tab-is-right .ml-tab-item.ml-tab-item-active {
   padding: 5px 2px 5px 0px;
   border-left: 2px solid #5b87a5;
   border-bottom: 1px solid #dcdee2;
@@ -120,36 +120,36 @@
   list-style: none;
   transition: all 0.3s ease-in-out;
 }
-.is-left {
+.ml-tab-is-left {
   float: left;
   height: 100%;
   margin-bottom: 0;
   margin-right: 10px;
 }
-.is-bottom {
+.ml-tab-is-bottom {
   margin-bottom: 0;
 }
-.is-right {
+.ml-tab-is-right {
   float: right;
   height: 100%;
   margin-bottom: 0;
   margin-left: 10px;
 }
-.is-left .ml-tab-item,
-.is-right .ml-tab-item {
+.ml-tab-is-left .ml-tab-item,
+.ml-tab-is-right .ml-tab-item {
   display: block;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
-.is-left .ml-tab-container,
-.is-right .ml-tab-container {
+.ml-tab-is-left .ml-tab-container,
+.ml-tab-is-right .ml-tab-container {
   height: 100%;
 }
-.is-left .ml-tab-item-scroll,
-.is-right .ml-tab-item-scroll {
+.ml-tab-is-left .ml-tab-item-scroll,
+.ml-tab-is-right .ml-tab-item-scroll {
   height: 100%;
 }
-.is-left .ml-tab-container-left,
-.is-right .ml-tab-container-left {
+.ml-tab-is-left .ml-tab-container-left,
+.ml-tab-is-right .ml-tab-container-left {
   top: 0;
   transform: rotate(90deg) translateY(-3px);
   transform-origin: right center;
@@ -162,8 +162,8 @@
   -o-transform: rotate(90deg) translateY(-3px); /* Opera */
   -o-transform-origin: right center;
 }
-.is-left .ml-tab-container-right,
-.is-right .ml-tab-container-right {
+.ml-tab-is-left .ml-tab-container-right,
+.ml-tab-is-right .ml-tab-container-right {
   bottom: 0;
   transform: rotate(90deg) translateY(6px);
   transform-origin: left center;

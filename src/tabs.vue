@@ -115,7 +115,7 @@ export default {
     mainClass() {
       return {
         'ml-tab': true,
-        [`is-${this.tabPosition}`]: true,
+        [`ml-tab-is-${this.tabPosition}`]: true,
         'card': this.type === 'card',
         'line': this.type === 'line',
       }

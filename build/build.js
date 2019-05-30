@@ -1,8 +1,11 @@
 require('./check-versions')()
 
+//终端微调器
 var ora = require('ora')
+//记录日志
 var rm = require('rimraf')
 var path = require('path')
+//粉笔
 var chalk = require('chalk')
 var webpack = require('webpack')
 var webpackConfig = require('./webpack.prod.conf')

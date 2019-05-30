@@ -1,6 +1,5 @@
 var path = require('path')
 var utils = require('./utils')
-var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -39,6 +38,7 @@ module.exports = {
                     loader: 'css-loader',
                     options: {
                         sourceMap: true,
+                        extract: true
                     },
                 },
             ],

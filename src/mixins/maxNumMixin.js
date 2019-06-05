@@ -58,7 +58,11 @@ export default {
      * @param {*} val showList
      */
     changeShowList (val) {
-      let index = this.data.findIndex((obj) => obj.id === val)
+      const showIndex = this.showIndex.findIndex(obj => obj.id === val)
+      if (showIndex !== -1) {
+        return
+      }
+      const index = this.data.findIndex((obj) => obj.id === val)
       if (index !== -1) {
         if (this.dataLength <= this.maxnum) {
           this.showList = this.data

@@ -26,7 +26,7 @@ export default {
           // TODO（还需要修改，如果内容长度改变很大，offset也记录不准确）
           const recordOffset = this.getCurrentScrollOffset(this.isHorizontal ? 1 : 2)
           this.setOffset(0, 0)
-          this.changeShowList(this.showList[0].id)
+          this.updateShowListData()
           this.isHorizontal ? this.setOffset(recordOffset, 0) : this.setOffset(0, recordOffset)
         }
       }
@@ -89,6 +89,13 @@ export default {
             : this.$refs.navScroll.offsetHeight
           this.hideContainerBar = nav <= container
         })
+      }
+    },
+    updateShowListData () {
+      if (this.showList.length === this.maxnum) {
+        this.showList = [...this.data.slice(this.beginPos, this.beginPos + this.maxnum)]
+      } else {
+        this.showList = [...this.data]
       }
     }
   },

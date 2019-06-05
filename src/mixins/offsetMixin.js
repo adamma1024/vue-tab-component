@@ -47,7 +47,7 @@ export default {
       if (this.beginPos >= 0) {
         if (this.beginPos >= 8) {
           this.showList = this.data.slice(this.beginPos - 8, this.beginPos + this.maxnum - 8)
-          newOffset = currentOffset - 10
+          newOffset = currentOffset - 50
         } else {
           this.showList = this.data.slice(0, this.maxnum)
         }
@@ -79,7 +79,7 @@ export default {
       if (this.beginPos < this.dataLength - this.maxnum) {
         if (this.dataLength - this.maxnum - this.beginPos >= 8) {
           this.showList = this.data.slice(this.beginPos + 8, this.beginPos + this.maxnum + 8)
-          newOffset = currentOffset + 10
+          newOffset = currentOffset + 50
         } else {
           this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
         }

@@ -40,8 +40,8 @@ export default {
 
       const beginIndex = (this.beginPos - 5) > 0 ? this.beginPos - 5 : 0
       const endIndex = (this.beginPos - 5) > 0 ? this.beginPos + this.maxnum - 5 : this.maxnum
+      const newOffset = (currentOffset - 10) > 0 ? currentOffset - 10 : 0
       this.showList = [...this.data.slice(beginIndex, endIndex)]
-      const newOffset = currentOffset - 10
 
       this.isHorizontal
         ? this.setOffset(newOffset, 0)

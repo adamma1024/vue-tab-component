@@ -36,7 +36,9 @@ export default {
     /**
      * 更新显示的list
      */
-    updataShowList () {
+    updataShowList (val) {
+      // data数量改变，showList重置，如果要定位请设置activeTab
+      this.showList = this.dataLength <= this.maxnum ? this.data : val.slice(0, this.maxnum)
       this.scrollToActiveTab()
     },
     /**

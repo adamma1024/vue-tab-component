@@ -33,9 +33,16 @@ export default {
     }
   },
   methods: {
+    /**
+     * 更新显示的list
+     */
     updataShowList () {
       this.scrollToActiveTab()
     },
+    /**
+     * 改变showList
+     * @param {*} val showList
+     */
     changeShowList (val) {
       let index = this.data.findIndex((obj) => obj.id === val)
       if (index !== -1) {
@@ -51,6 +58,9 @@ export default {
         }
       }
     },
+    /**
+     * 判断是否隐藏左右移动按钮
+     */
     isHideLRIcon () {
       if (this.hideDirectionBar) {
         this.hideContainerBar = true

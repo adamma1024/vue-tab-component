@@ -40,7 +40,7 @@ export default {
 
       const beginIndex = (this.beginPos - 5) > 0 ? this.beginPos - 5 : 0
       const endIndex = (this.beginPos - 5) > 0 ? this.beginPos + this.maxnum - 5 : this.maxnum
-      const newOffset = (currentOffset - 10) > 0 ? currentOffset - 10 : 0
+      const newOffset = (currentOffset - 30) > 0 ? currentOffset - 30 : 0
       this.showList = [...this.data.slice(beginIndex, endIndex)]
 
       this.isHorizontal
@@ -63,7 +63,7 @@ export default {
       if (navWidth - currentOffset <= containerWidth && this.showList[this.showList.length - 1].id === this.data[this.dataLength - 1].id) return
 
       this.showList = [...this.data.slice(this.beginPos + 5, this.beginPos + this.maxnum + 5)]
-      const newOffset = currentOffset + 10
+      const newOffset = currentOffset + 30
 
       this.isHorizontal
         ? this.setOffset(newOffset, 0)

@@ -19,15 +19,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  externals: {
-    vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
-    },
-    loadsh: 'loadsh'
-  },
   plugins: [
     new VueLoaderPlugin()
   ]

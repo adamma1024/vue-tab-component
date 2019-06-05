@@ -28,6 +28,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * 向前滚动
+     */
     scrollPrev () {
       const containerWidth = this.isHorizontal
         ? this.$refs.navScroll.offsetWidth
@@ -53,6 +56,9 @@ export default {
         ? this.setOffset(newOffset, 0)
         : this.setOffset(0, newOffset)
     },
+    /**
+     * 向后滚动
+     */
     scrollNext () {
       const navWidth = this.isHorizontal
         ? this.$refs.nav.offsetWidth
@@ -83,6 +89,9 @@ export default {
         ? this.setOffset(newOffset, 0)
         : this.setOffset(0, newOffset)
     },
+    /**
+     * 滚动到active状态的tab
+     */
     scrollToActiveTab () {
       this.changeShowList(!this.currActive && this.data[0] ? this.data[0].id : this.currActive)
       this.$nextTick(() => {
@@ -127,6 +136,10 @@ export default {
           : this.setOffset(0, Math.min(newOffset, maxOffset))
       })
     },
+    /**
+     * 根据当前是横向还是纵向，获得当前offset
+     * @param {*} type 1：横向 2：纵向
+     */
     getCurrentScrollOffset (type = 1) {
       const { navStyle } = this
       return navStyle.transform
@@ -135,9 +148,17 @@ export default {
           : Number(navStyle.transform.match(/ -(\d+(\.\d+)*)px/)[1])
         : 0
     },
+    /**
+     * 设置offset
+     * @param {*} x 横向offset
+     * @param {*} y 纵向offset
+     */
     setOffset (x, y) {
       this.navStyle.transform = `translate(-${x}px, -${y}px)`
     },
+    /**
+     * 移动到最开始的位置
+     */
     goBegin () {
       if (this.dataLength > this.maxnum) {
         this.showList = this.data.slice(0, this.maxnum)
@@ -146,6 +167,9 @@ export default {
         this.setOffset(0, 0)
       })
     },
+    /**
+     * 移动到结束的位置
+     */
     goEnd () {
       if (this.dataLength > this.maxnum) {
         this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)

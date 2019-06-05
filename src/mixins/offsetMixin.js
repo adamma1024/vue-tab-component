@@ -79,7 +79,7 @@ export default {
       if (this.beginPos < this.dataLength - this.maxnum) {
         if (this.dataLength - this.maxnum - this.beginPos >= 8) {
           this.showList = this.data.slice(this.beginPos + 8, this.beginPos + this.maxnum + 8)
-          newOffset = newOffset - containerWidth * (2 / 3)
+          newOffset = newOffset - containerWidth * (4 / 3)
         } else {
           this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
         }

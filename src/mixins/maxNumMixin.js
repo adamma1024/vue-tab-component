@@ -58,7 +58,7 @@ export default {
      * @param {*} val showList
      */
     changeShowList (val) {
-      const showIndex = this.showIndex.findIndex(obj => obj.id === val)
+      const showIndex = this.showList.findIndex(obj => obj.id === val)
       if (showIndex !== -1) {
         return
       }

@@ -47,7 +47,7 @@ export default {
       if (this.beginPos >= 0) {
         if (this.beginPos >= 8) {
           this.showList = this.data.slice(this.beginPos - 8, this.beginPos + this.maxnum - 8)
-          newOffset = newOffset + containerWidth * (2 / 3)
+          newOffset = currentOffset - 10
         } else {
           this.showList = this.data.slice(0, this.maxnum)
         }
@@ -72,14 +72,14 @@ export default {
       if (navWidth - currentOffset <= containerWidth && this.showList[this.showList.length - 1].id === this.data[this.dataLength - 1].id) return
 
       let newOffset =
-        navWidth - currentOffset > containerWidth * 2
-          ? currentOffset + containerWidth
-          : navWidth - containerWidth
+      navWidth - currentOffset > containerWidth * 2
+        ? currentOffset + containerWidth
+        : navWidth - containerWidth
 
       if (this.beginPos < this.dataLength - this.maxnum) {
         if (this.dataLength - this.maxnum - this.beginPos >= 8) {
           this.showList = this.data.slice(this.beginPos + 8, this.beginPos + this.maxnum + 8)
-          newOffset = newOffset - containerWidth * (4 / 3)
+          newOffset = currentOffset + 10
         } else {
           this.showList = this.data.slice(this.dataLength - this.maxnum, this.dataLength)
         }

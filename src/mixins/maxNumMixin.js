@@ -38,7 +38,7 @@ export default {
   computed: {
     beginPos () {
       let index = -1
-      if (this.showList.length === this.maxnum) {
+      if (this.showList.length > 0) {
         index = this.data.findIndex(obj => obj.id === this.showList[0].id)
       }
       return index

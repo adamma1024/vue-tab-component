@@ -41,12 +41,12 @@ export default {
 
       if (!currentOffset && this.beginPos === 0) return
 
-      let newOffset = currentOffset - 50
-      // currentOffset > containerWidth ? currentOffset - containerWidth : 0
+      let newOffset =
+      currentOffset > containerWidth ? currentOffset - containerWidth : 0
 
       if (this.beginPos >= 8) {
         this.showList = [...this.data.slice(this.beginPos - 8, this.beginPos + this.maxnum - 8)]
-        // newOffset = currentOffset - 50
+        newOffset = currentOffset - 50
       } else {
         this.showList = [...this.data.slice(0, this.maxnum)]
       }
@@ -70,14 +70,14 @@ export default {
         : this.getCurrentScrollOffset(2)
       if (navWidth - currentOffset <= containerWidth && this.showList[this.showList.length - 1].id === this.data[this.dataLength - 1].id) return
 
-      let newOffset = currentOffset + 50
-      // navWidth - currentOffset > containerWidth * 2
-      //   ? currentOffset + containerWidth
-      //   : navWidth - containerWidth
+      let newOffset =
+      (navWidth - currentOffset) > containerWidth * 2
+        ? currentOffset + containerWidth
+        : navWidth - containerWidth
 
-      if (this.dataLength - this.maxnum - this.beginPos >= 0) {
+      if ((this.dataLength - this.beginPos) > this.maxnum / 2) {
         this.showList = [...this.data.slice(this.beginPos + 5, this.beginPos + this.maxnum + 5)]
-        // newOffset = currentOffset + 50
+        newOffset = currentOffset + 10
       } else {
         this.showList = [...this.data.slice(this.dataLength - this.maxnum, this.dataLength)]
       }

@@ -96,7 +96,7 @@ export default {
       }
     },
     updateShowListData () {
-      if (this.showList.length === this.maxnum) {
+      if (this.dataLength > this.maxnum) {
         this.showList = [...this.data.slice(this.beginPos, this.beginPos + this.maxnum)]
       } else {
         this.showList = [...this.data]

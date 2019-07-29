@@ -1,6 +1,6 @@
 {
   "name": "vue-tab-component",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "easy tabs component",
   "main": "dist/vue-tabs.min.js",
   "scripts": {
@@ -51,7 +51,8 @@
     "webpack": "^4.30.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",

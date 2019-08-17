@@ -2,7 +2,7 @@
 
 [![Version](http://img.shields.io/npm/v/vue-tab-component.svg)](https://www.npmjs.com/package/vue-tab-component)[![Downloads](http://img.shields.io/npm/dm/vue-tab-component.svg)](https://www.npmjs.com/package/vue-tab-component)[![License](https://img.shields.io/npm/l/vue-tab-component.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-> 基于Vue2.0的轻量级tab组件。可控制渲染数量
+> 基于Vue2.0的轻量级tab组件。可支持大数据量渲染
 
 **功能**
 

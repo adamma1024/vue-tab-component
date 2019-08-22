@@ -86,6 +86,10 @@ export default {
     hideDirectionBar: {
       type: Boolean,
       default: false
+    },
+    className: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -112,6 +116,7 @@ export default {
         [`ml-tab-is-${this.tabPosition}`]: true,
         'card': this.type === 'card',
         'line': this.type === 'line',
+        [`${this.className}`]: this.className ? true : false,
       }
     },
     containerPadding () {

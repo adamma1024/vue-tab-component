@@ -36,6 +36,9 @@ export default {
      * 移动尾部算法，新尾部元素 bound 减去begin的bound的值
      */
     scrollPrev () {
+      // 保存初始的begin，因为更新数据后会变动
+      let begin = this.beginTab
+
       const currentOffset = this.isHorizontal
         ? this.getCurrentScrollOffset()
         : this.getCurrentScrollOffset(2)
@@ -44,12 +47,15 @@ export default {
 
       const beginIndex = (this.beginPos - 6) > 0 ? this.beginPos - 6 : 0
       const endIndex = (this.beginPos - 6) > 0 ? this.beginPos + this.maxnum - 6 : this.maxnum
-      const newOffset = (currentOffset - 30) > 0 ? currentOffset - 30 : 0
       this.showList = [...this.data.slice(beginIndex, endIndex)]
 
-      this.isHorizontal
-        ? this.setOffset(newOffset, 0)
-        : this.setOffset(0, newOffset)
+      // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
+      this.$nextTick(() => {
+        const newOffset = this.endTab.boundLeftOrTop - begin.boundLeftOrTop > 0 ? this.endTab.boundLeftOrTop - begin.boundLeftOrTop : 0
+        this.isHorizontal
+          ? this.setOffset(newOffset, 0)
+          : this.setOffset(0, newOffset)
+      })
     },
     /**
      * 向后滚动

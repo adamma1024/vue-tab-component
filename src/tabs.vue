@@ -15,6 +15,7 @@
             @mouseleave="mouseLeave"
             @click.stop='onTabClick(item)'
             v-for='(item, index) in showList'
+            :id="`ml-tab-${index}`"
             :key='index'
             :class="{'ml-tab-item': true, 'ml-tab-item-active': item.key === currActive, 'ml-tab-item-disabled': true}"
           >
@@ -45,7 +46,7 @@ import maxNumMixin from './mixins/maxNumMixin.js'
 import offsetMixin from './mixins/offsetMixin.js'
 
 export default {
-  mixins: [offsetMixin, maxNumMixin],
+  mixins: [ offsetMixin, maxNumMixin ],
   props: {
     data: {
       type: Array,
@@ -95,7 +96,9 @@ export default {
   data() {
     return {
       currActive: this.activeName,
-      hoverId: ''
+      hoverId: '',
+      beginTab: '',
+      endTab: '',
     };
   },
   watch: {
@@ -104,7 +107,7 @@ export default {
     },
     currActive(val) {
       this.scrollToActiveTab();
-    }
+    },
   },
   computed: {
     isHorizontal() {
@@ -159,7 +162,40 @@ export default {
     },
     mouseLeave () {
       this.hoverId = ''
+    },
+    itemInDisplay(entries, observer){
+      let displayArray = []
+      entries.forEach(entry => {{
+        if (entry.isIntersecting) {
+          displayArray.push({
+            index:Number.parseInt(entry.target.id.substr(7)),
+            boundLeftOrTop: this.isHorizontal ? entry.boundingClientRect.left : entry.boundingClientRect.top
+          })
+        } else {
+          // 不需删除，只需记录新的即可
+        }
+      }})
+      // 数字，基础类型直接等于[0]即可
+      // pop 和 shift 必然没有直接取值快
+      // 记录 可视区 的 显示完整的 首个元素 和 最后一个元素
+      this.beginTab = displayArray[0]
+      this.endTab = displayArray[displayArray.length]
     }
+  },
+  mounted(){
+    var that = this
+    this.$nextTick(()=>{{
+      var options = {
+        root: that.$refs.navScroll,
+        rootMargin: '0px',
+        threshold: 1
+      }
+      var observer = new IntersectionObserver(that.itemInDisplay, options)
+      var tabs = that.$refs.nav.children
+      for(let item of tabs){
+        observer.observe(item)
+      }
+    }})
   }
 };
 </script>

@@ -20,7 +20,6 @@ module.exports = merge(baseWebpackConfig, {
   devtool: '#cheap-module-eval-source-map',
   plugins: [
     new VueLoaderPlugin(),
-    
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),

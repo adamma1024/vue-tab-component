@@ -30,6 +30,10 @@ export default {
   methods: {
     /**
      * 向前滚动
+     * 取可视区首个元素，在数据中定位，数据向前取 6 个值
+     * nextTick 中 获取老的begin元素的bound x width
+     * setOffset 移动begin至可视区尾部
+     * 移动尾部算法，新尾部元素 bound 减去begin的bound的值
      */
     scrollPrev () {
       const currentOffset = this.isHorizontal
@@ -38,8 +42,8 @@ export default {
 
       if (!currentOffset && this.beginPos === 0) return
 
-      const beginIndex = (this.beginPos - 5) > 0 ? this.beginPos - 5 : 0
-      const endIndex = (this.beginPos - 5) > 0 ? this.beginPos + this.maxnum - 5 : this.maxnum
+      const beginIndex = (this.beginPos - 6) > 0 ? this.beginPos - 6 : 0
+      const endIndex = (this.beginPos - 6) > 0 ? this.beginPos + this.maxnum - 6 : this.maxnum
       const newOffset = (currentOffset - 30) > 0 ? currentOffset - 30 : 0
       this.showList = [...this.data.slice(beginIndex, endIndex)]
 

@@ -46,8 +46,7 @@ export default {
       if (!currentOffset && this.beginPos === 0) return
 
       const beginIndex = (this.beginPos - 6) > 0 ? this.beginPos - 6 : 0
-      const endIndex = (this.beginPos - 6) > 0 ? this.beginPos + this.maxnum - 6 : this.maxnum
-      this.showList = [...this.data.slice(beginIndex, endIndex)]
+      this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
 
       // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
       this.$nextTick(() => {
@@ -59,8 +58,12 @@ export default {
     },
     /**
      * 向后滚动
+     * 与向前类似
      */
     scrollNext () {
+      // 保存初始的end，因为更新数据后会变动
+      let end = this.endTab
+
       const navWidth = this.isHorizontal
         ? this.$refs.nav.offsetWidth
         : this.$refs.nav.offsetHeight
@@ -70,15 +73,20 @@ export default {
       const currentOffset = this.isHorizontal
         ? this.getCurrentScrollOffset()
         : this.getCurrentScrollOffset(2)
-      if (navWidth - currentOffset <= containerWidth && this.showList[this.showList.length - 1].id === this.data[this.dataLength - 1].id) return
+      if (navWidth - currentOffset <= containerWidth || this.beginPos === this.maxBegin) return
 
-      this.showList = [...this.data.slice(this.beginPos + 5, this.beginPos + this.maxnum + 5)]
-      const newOffset = currentOffset + 30
+      const beginIndex = (this.beginPos + 6) > this.maxBegin ? this.maxBegin : this.beginPos + 6
+      this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
 
-      this.isHorizontal
-        ? this.setOffset(newOffset, 0)
-        : this.setOffset(0, newOffset)
+      // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
+      this.$nextTick(() => {
+        const newOffset = this.beginTab.boundLeftOrTop - end.boundLeftOrTop
+        this.isHorizontal
+          ? this.setOffset(newOffset, 0)
+          : this.setOffset(0, newOffset)
+      })
     },
+
     /**
      * 滚动到active状态的tab
      */
@@ -134,8 +142,8 @@ export default {
       const { navStyle } = this
       return navStyle.transform
         ? type === 1
-          ? Number(navStyle.transform.match(/-(\d+(\.\d+)*)px/)[1])
-          : Number(navStyle.transform.match(/ -(\d+(\.\d+)*)px/)[1])
+          ? Number(navStyle.transform.match(/[-\d]*\.?\d+/)[0])
+          : Number(navStyle.transform.match(/[-\d]*\.?\d+/)[1])
         : 0
     },
     /**
@@ -144,7 +152,7 @@ export default {
      * @param {*} y 纵向offset
      */
     setOffset (x, y) {
-      this.navStyle.transform = `translate(-${x}px, -${y}px)`
+      this.navStyle.transform = `translate(${x}px, ${y}px)`
     },
     /**
      * 移动到最开始的位置

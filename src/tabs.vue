@@ -174,14 +174,16 @@ export default {
         } else {
           // 如果在数组中，剔除
           let index = this.displayArray.findIndex((obj) => (obj.index.toString() === entry.target.id.substr(7)))
-          this.displayArray.splice(index, 1)
+          if(index > -1){
+            this.displayArray.splice(index, 1)
+          }
         }
       }})
       // 数字，基础类型直接等于[0]即可
       // pop 和 shift 必然没有直接取值快
       // 记录 可视区 的 显示完整的 首个元素 和 最后一个元素
       this.beginTab = this.displayArray[0]
-      this.endTab = this.displayArray[this.displayArray.length]
+      this.endTab = this.displayArray[this.displayArray.length - 1]
     }
   },
   mounted(){

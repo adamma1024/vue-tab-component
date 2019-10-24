@@ -42,6 +42,9 @@ export default {
         index = this.data.findIndex(obj => obj.id === this.showList[0].id)
       }
       return index
+    },
+    maxBegin () {
+      return this.dataLength - this.maxnum - 1
     }
   },
   methods: {

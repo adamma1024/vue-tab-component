@@ -110,11 +110,14 @@ export default {
     removeTab(key){
       let index = this.tabsData.findIndex(item => item.key === key)
       this.$delete(this.tabsData, index)
+    },
+    getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
     }
   },
   mounted(){
     for(let i = 1; i<100; i++){
-      this.tabsData.push({key: i.toString(), title: '一二三' + i})
+      this.tabsData.push({key: i.toString(), title: `${i}一二三+${this.getRandomInt(99999)}`})
     }
   }
 }

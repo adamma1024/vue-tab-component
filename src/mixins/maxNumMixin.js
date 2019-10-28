@@ -39,7 +39,7 @@ export default {
     beginPos () {
       let index = -1
       if (this.showList.length > 0) {
-        index = this.data.findIndex(obj => obj.id === this.showList[0].id)
+        index = this.data.findIndex(obj => obj.key === this.showList[0].key)
       }
       return index
     },
@@ -61,11 +61,11 @@ export default {
      * @param {*} val showList
      */
     changeShowList (val) {
-      const showIndex = this.showList.findIndex(obj => obj.id === val)
+      const showIndex = this.showList.findIndex(obj => obj.key === val)
       if (showIndex !== -1) {
         return
       }
-      const index = this.data.findIndex((obj) => obj.id === val)
+      const index = this.data.findIndex((obj) => obj.key === val)
       if (index !== -1) {
         if (this.dataLength <= this.maxnum) {
           this.showList = this.data

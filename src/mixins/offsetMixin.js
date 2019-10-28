@@ -37,7 +37,7 @@ export default {
      */
     scrollPrev () {
       // 保存初始的begin，因为更新数据后会变动
-      let begin = this.beginTab
+      let end = this.endTab
 
       const currentOffset = this.isHorizontal
         ? this.getCurrentScrollOffset()
@@ -45,23 +45,29 @@ export default {
 
       if (!currentOffset && this.beginPos === 0) return
 
-      const beginIndex = (this.beginPos - 6) > 0 ? this.beginPos - 6 : 0
+      const beginIndex = (this.beginPos - (this.endTab.index - this.beginTab.index)) > 0
+        ? this.beginPos - (this.endTab.index - this.beginTab.index)
+        : 0
       this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
 
       // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
       this.$nextTick(() => {
-        const newOffset = this.endTab.boundLeftOrTop - begin.boundLeftOrTop > 0 ? this.endTab.boundLeftOrTop - begin.boundLeftOrTop : 0
+        const oldEndBound = document.getElementById(`ml-tab-${end.index}`).getBoundingClientRect()
+        const newEndBound = document.getElementById(`ml-tab-${this.endTab.index}`).getBoundingClientRect()
+        const newOffset = this.isHorizontal ? newEndBound.left - oldEndBound.left : newEndBound.top - oldEndBound.top
         this.isHorizontal
           ? this.setOffset(newOffset, 0)
           : this.setOffset(0, newOffset)
       })
     },
+
     /**
-     * 向后滚动
-     * 与向前类似
+     * old showList 中的 beginTab.index（endTab.index-(endTab.index-beginTab.index)） 应该出现在新 showList 的首位
+     * offset = newShowList[newBegin.index].boundLeftOrTop - newShowList[oldBegin.index].boundLeftOrTop
      */
     scrollNext () {
       // 保存初始的end，因为更新数据后会变动
+      let begin = this.beginTab
       let end = this.endTab
 
       const navWidth = this.isHorizontal
@@ -73,25 +79,44 @@ export default {
       const currentOffset = this.isHorizontal
         ? this.getCurrentScrollOffset()
         : this.getCurrentScrollOffset(2)
-      if (navWidth - currentOffset <= containerWidth || this.beginPos === this.maxBegin) return
+      if (navWidth + currentOffset <= containerWidth) return
 
-      const beginIndex = (this.beginPos + 6) > this.maxBegin ? this.maxBegin : this.beginPos + 6
-      this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
-
-      // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
-      this.$nextTick(() => {
-        const newOffset = this.beginTab.boundLeftOrTop - end.boundLeftOrTop
-        this.isHorizontal
-          ? this.setOffset(newOffset, 0)
-          : this.setOffset(0, newOffset)
-      })
+      if (this.beginPos !== this.maxBegin) {
+        // 数据发生变动，offset改变需在数据变动之后计算
+        const beginIndex = (this.beginPos + this.endTab.index - begin.index) > this.maxBegin
+          ? this.maxBegin
+          : this.beginPos + this.endTab.index - begin.index
+        this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
+        // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
+        this.$nextTick(() => {
+          const oldBeginBound = document.getElementById(`ml-tab-${begin.index}`).getBoundingClientRect()
+          const newBeginBound = document.getElementById(`ml-tab-${this.beginTab.index}`).getBoundingClientRect()
+          const newOffset = this.isHorizontal ? newBeginBound.left - oldBeginBound.left : newBeginBound.top - oldBeginBound.top
+          this.isHorizontal
+            ? this.setOffset(newOffset, 0)
+            : this.setOffset(0, newOffset)
+        })
+      } else {
+        // 数据没发生改变，直接移动 offset = end.boundLeftOrTop - begin.boundLeftOrTop
+        const endBound = document.getElementById(`ml-tab-${end.index}`).getBoundingClientRect()
+        let offset
+        if (this.isHorizontal) {
+          offset = this.$refs.nav.getBoundingClientRect().left - endBound.left
+          offset = navWidth + offset < containerWidth ? containerWidth - navWidth : offset
+          this.setOffset(offset, 0)
+        } else {
+          offset = this.$refs.nav.getBoundingClientRect().top - endBound.top
+          offset = navWidth + offset < containerWidth ? containerWidth - navWidth : offset
+          this.setOffset(0, offset)
+        }
+      }
     },
 
     /**
      * 滚动到active状态的tab
      */
     scrollToActiveTab () {
-      this.changeShowList(!this.currActive && this.data[0] ? this.data[0].id : this.currActive)
+      this.changeShowList(!this.currActive && this.data[0] ? this.data[0].key : this.currActive)
       this.$nextTick(() => {
         const nav = this.$refs.nav
         const activeTab = this.$el.querySelector('.ml-tab-item-active')

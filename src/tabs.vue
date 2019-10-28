@@ -167,10 +167,15 @@ export default {
     itemInDisplay(entries, observer){
       entries.forEach(entry => {{
         if (entry.isIntersecting) {
-          this.displayArray.push({
-            index:Number.parseInt(entry.target.id.substr(7)),
-            boundLeftOrTop: this.isHorizontal ? entry.boundingClientRect.left : entry.boundingClientRect.top
-          })
+          // 比较index，如果小与首个index 使用插在前面
+          let entryIndex = Number.parseInt(entry.target.id.substr(7))
+          if (this.displayArray[0] && entryIndex < this.displayArray[0].index) {
+            this.displayArray = [ { index: entryIndex }, ...this.displayArray ]
+          } else {
+            this.displayArray.push({
+              index: entryIndex
+            })
+          }
         } else {
           // 如果在数组中，剔除
           let index = this.displayArray.findIndex((obj) => (obj.index.toString() === entry.target.id.substr(7)))

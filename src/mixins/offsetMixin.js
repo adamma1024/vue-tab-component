@@ -45,20 +45,35 @@ export default {
 
       if (!currentOffset && this.beginPos === 0) return
 
-      const beginIndex = (this.beginPos - (this.endTab.index - this.beginTab.index)) > 0
-        ? this.beginPos - (this.endTab.index - this.beginTab.index)
-        : 0
-      this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
-
-      // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
-      this.$nextTick(() => {
-        const oldEndBound = document.getElementById(`ml-tab-${end.index}`).getBoundingClientRect()
-        const newEndBound = document.getElementById(`ml-tab-${this.endTab.index}`).getBoundingClientRect()
-        const newOffset = this.isHorizontal ? newEndBound.left - oldEndBound.left : newEndBound.top - oldEndBound.top
-        this.isHorizontal
-          ? this.setOffset(newOffset, 0)
-          : this.setOffset(0, newOffset)
-      })
+      // currentOffset = 0时，代表beginPos已经等于maxBegin，这时如果向前移动仍然需要改变数据
+      if (this.beginPos !== this.maxBegin || currentOffset === 0) {
+        const beginIndex = (this.beginPos - (this.endTab.index - this.beginTab.index)) > 0
+          ? this.beginPos - (this.endTab.index - this.beginTab.index)
+          : 0
+        this.showList = this.data.slice(beginIndex, beginIndex + this.maxnum)
+        // 剩下逻辑放进nextTick异步中，这样数据已经渲染结束了。再做位移偏转操作
+        this.$nextTick(() => {
+          const oldEndBound = document.getElementById(`ml-tab-${end.index}`).getBoundingClientRect()
+          const newEndBound = document.getElementById(`ml-tab-${this.endTab.index}`).getBoundingClientRect()
+          const newOffset = this.isHorizontal ? newEndBound.left - oldEndBound.left : newEndBound.top - oldEndBound.top
+          this.isHorizontal
+            ? this.setOffset(newOffset, 0)
+            : this.setOffset(0, newOffset)
+        })
+      } else {
+        // 数据没发生改变，直接移动 offset = end.boundLeftOrTop - begin.boundLeftOrTop
+        const beginBound = document.getElementById(`ml-tab-${this.beginTab.index}`).getBoundingClientRect()
+        let offset
+        if (this.isHorizontal) {
+          offset = currentOffset + this.$refs.navScroll.getBoundingClientRect().width - beginBound.width
+          offset = offset > 0 ? 0 : offset
+          this.setOffset(offset, 0)
+        } else {
+          offset = this.$refs.navScroll.getBoundingClientRect().height - beginBound.height
+          // offset = navWidth + offset < containerWidth ? containerWidth - navWidth : offset
+          this.setOffset(0, offset)
+        }
+      }
     },
 
     /**
@@ -91,7 +106,7 @@ export default {
         this.$nextTick(() => {
           const oldBeginBound = document.getElementById(`ml-tab-${begin.index}`).getBoundingClientRect()
           const newBeginBound = document.getElementById(`ml-tab-${this.beginTab.index}`).getBoundingClientRect()
-          const newOffset = this.isHorizontal ? newBeginBound.left - oldBeginBound.left : newBeginBound.top - oldBeginBound.top
+          const newOffset = this.isHorizontal ? this.$refs.nav.getBoundingClientRect().left - oldBeginBound.left : newBeginBound.top - oldBeginBound.top
           this.isHorizontal
             ? this.setOffset(newOffset, 0)
             : this.setOffset(0, newOffset)

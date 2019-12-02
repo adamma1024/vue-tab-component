@@ -9,21 +9,21 @@
       </div>
     </div>
     <div class="tabs-demo">
-      <ButtonGroup style='margin-bottom:10px;'>
+      <ButtonGroup class='my-button-group'>
         <Button @click="changePosition(item)" v-for="(item, index) in poss" :key="index">{{item}}</Button>
       </ButtonGroup>
-      <ButtonGroup style='margin-bottom:10px;'>
+      <ButtonGroup class='my-button-group'>
         <Button @click="changeOffset(index)" type="primary" v-for="(item, index) in moreBtns" :key="index" :icon="item"></Button>
       </ButtonGroup>
-      <ButtonGroup style='margin-bottom:10px;'>
+      <ButtonGroup class='my-button-group'>
         <Button @click="addItem(item)">增加</Button>
       </ButtonGroup>
-      <ButtonGroup style='margin-bottom:10px;'>
+      <ButtonGroup class='my-button-group'>
         <Button @click="changeActiveTab(index)" v-for="(item, index) in changeActive" :key="index">{{item}}</Button>
-        <span>切到指定的tab:</span>
-        <Input v-model='activeTab' style="width: 80px" placeholder="输入指定tab id"/>
+        <span style="margin-left: 30px;">切到指定的tab:</span>
+        <Input v-model='activeTab' style="width: 180px" placeholder="输入指定tab id"/>
       </ButtonGroup>
-      <ButtonGroup style='margin-bottom:10px;'>
+      <ButtonGroup class='my-button-group'>
         <Button @click="isHideBar()" >toggle左右图标</Button>
       </ButtonGroup>
       <div style="height:300px;width:100%;position:relative">
@@ -53,9 +53,6 @@
       </div>
     </div>
     <div class="github-info">
-      <div class='sentence'>
-        <a href='https://github.com/qq240814476/vue-tab-component' target='_blanket'>View Documentation</a>
-      </div>
       <iframe src="https://ghbtns.com/github-btn.html?user=qq240814476&repo=vue-tab-component&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
       <a href="https://996.icu" target='_blank'><img src="https://img.shields.io/badge/link-996.icu-red.svg"></a>
     </div>
@@ -127,10 +124,22 @@ export default {
   font-family: "Tangerine";
   src: url("./assets/Tangerine-Regular.ttf");
 }
+body{
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  position: absolute;
+}
 .main{
   width: 100%;
-  height: 800px;
-  position: relative;
+  height: 100%;
+}
+.my-button-group{
+  overflow: auto;
+  width: 100%;
+  padding-left: 20px;
+  margin-bottom:10px;
 }
 .tabs-demo{
   width: 800px;
@@ -143,6 +152,7 @@ export default {
 .github-info{
   bottom: 0;
   left: 38%;
+  line-height: 1;
   position: absolute;
 }
 .sentence {

@@ -1,8 +1,9 @@
 import Vue from 'vue'
-import iview from 'iview'
+import { Tooltip, Icon } from 'view-design'
 import tabs from './tabs.vue'
 
-Vue.use(iview)
+Vue.component('Tooltip', Tooltip)
+Vue.component('Icon', Icon)
 
 const tab = {
   install: function (Vue) {

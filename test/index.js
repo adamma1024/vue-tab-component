@@ -1,10 +1,12 @@
 import Vue from 'vue'
-import iview from 'iview'
-import 'iview/dist/styles/iview.css'
+import { ButtonGroup, Button, Input } from 'view-design'
+import 'view-design/dist/styles/iview.css'
 import App from './App.vue'
 import tabs from '../src'
 
-Vue.use(iview)
+Vue.component('ButtonGroup', ButtonGroup)
+Vue.component('Button', Button)
+Vue.component('Input', Input)
 Vue.use(tabs)
 
 var app = new Vue({

@@ -20,7 +20,12 @@
             :class="{'ml-tab-item': true, 'ml-tab-item-active': item.key === currActive, 'ml-tab-item-disabled': true}"
           >
             <div class='ml-tab-item-slot'>
-              <slot name='tab' :data='item'>
+              <Tooltip v-if="needShortText(text)" content="item.title" :delay="1000">
+                <slot name='tab' :data='item'>
+                  <div>{{shortText(item.title)}}</div>
+                </slot>
+              </Tooltip>
+              <slot v-else name='tab' :data='item'>
                 <div>{{item.title}}</div>
               </slot>
             </div>
@@ -44,6 +49,7 @@
 <script>
 import maxNumMixin from './mixins/maxNumMixin.js'
 import offsetMixin from './mixins/offsetMixin.js'
+import { shortText } from './js/utils.js'
 
 export default {
   mixins: [ offsetMixin, maxNumMixin ],
@@ -67,6 +73,9 @@ export default {
         const arr = ['line', 'card'];
         return arr.filter(val => val === str).length > 0;
       }
+    },
+    shortTextNum: {
+      default: 0
     },
     closable: {
       type: Boolean,
@@ -131,9 +140,17 @@ export default {
         style.padding = this.isHorizontal ? '0 20px' : '20px 0'
       }
       return style
-    }
+    },
   },
   methods: {
+    shortText,
+    needShortText (text) {
+      let bool = false
+      if(this.shortTextNum !== 0 && shortText(text, this.shortTextNum)){
+        bool = true
+      }
+      return bool
+    },
     itemIcon (item) {
       return item.icon ? item.icon : 'ios-unlock-outline'
     },
@@ -191,15 +208,14 @@ export default {
     }
   },
   mounted(){
-    var that = this
     this.$nextTick(()=>{{
       var options = {
-        root: that.$refs.navScroll,
+        root: this.$refs.navScroll,
         rootMargin: '0px',
         threshold: 1
       }
-      var observer = new IntersectionObserver(that.itemInDisplay, options)
-      var tabs = that.$refs.nav.children
+      var observer = new IntersectionObserver(this.itemInDisplay, options)
+      var tabs = this.$refs.nav.children
       for(let item of tabs){
         observer.observe(item)
       }

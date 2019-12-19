@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import iview from 'iview'
-import 'iview/dist/styles/iview.css'
+import iview from 'view-design'
+import 'view-design/dist/styles/iview.css'
 import App from './App.vue'
 import tabs from '../src'
 

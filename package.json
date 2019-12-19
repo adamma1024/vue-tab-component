@@ -44,13 +44,11 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "dependencies": {
-    "vue": "^2.6.10",
-    "iview": "^3.4.0",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.30.0"
-  },
   "devDependencies": {
+    "view-design": "^4.0.2",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.30.0",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "babel-loader": "^8.0.5",

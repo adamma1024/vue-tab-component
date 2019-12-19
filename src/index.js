@@ -1,8 +1,4 @@
-import Vue from 'vue'
-import iview from 'iview'
 import tabs from './tabs.vue'
-
-Vue.use(iview)
 
 const tab = {
   install: function (Vue) {

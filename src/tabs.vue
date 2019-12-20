@@ -208,7 +208,7 @@ export default {
     }
   },
   mounted(){
-    this.$nextTick(()=>{{
+    setTimeout(()=>{
       var options = {
         root: this.$refs.navScroll,
         rootMargin: '0px',
@@ -219,7 +219,7 @@ export default {
       for(let item of tabs){
         observer.observe(item)
       }
-    }})
+    }, 200)
   }
 };
 </script>

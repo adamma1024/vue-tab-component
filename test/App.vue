@@ -114,7 +114,7 @@ export default {
   },
   mounted(){
     for(let i = 1; i<100; i++){
-      this.tabsData.push({key: i.toString(), title: `${i}一二三+${this.getRandomInt(99999)}`})
+      this.tabsData.push({key: i.toString(), title: `${i}一二三+${this.getRandomInt(9999999999)}`})
     }
   }
 }

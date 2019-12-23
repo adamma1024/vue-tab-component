@@ -36,12 +36,15 @@ export default {
         ? this.getCurrentScrollOffset()
         : this.getCurrentScrollOffset(2)
 
+      // tabs每次移动距离
+      const stepWidth = this.$el.getBoundingClientRect().width * 3 / 4
+
       if (!currentOffset && this.beginPos === 0) return
 
-      const beginIndex = (this.beginPos - 5) > 0 ? this.beginPos - 5 : 0
-      const endIndex = (this.beginPos - 5) > 0 ? this.beginPos + this.maxnum - 5 : this.maxnum
-      const newOffset = (currentOffset - 30) > 0 ? currentOffset - 30 : 0
-      this.showList = [...this.data.slice(beginIndex, endIndex)]
+      // const beginIndex = (this.beginPos - 5) > 0 ? this.beginPos - 5 : 0
+      // const endIndex = (this.beginPos - 5) > 0 ? this.beginPos + this.maxnum - 5 : this.maxnum
+      const newOffset = (currentOffset - stepWidth) > 0 ? currentOffset - stepWidth : 0
+      // this.showList = [...this.data.slice(beginIndex, endIndex)]
 
       this.isHorizontal
         ? this.setOffset(newOffset, 0)
@@ -60,10 +63,14 @@ export default {
       const currentOffset = this.isHorizontal
         ? this.getCurrentScrollOffset()
         : this.getCurrentScrollOffset(2)
+
+      // tabs每次移动距离
+      const stepWidth = this.$el.getBoundingClientRect().width * 3 / 4
+
       if (navWidth - currentOffset <= containerWidth && this.showList[this.showList.length - 1].id === this.data[this.dataLength - 1].id) return
 
-      this.showList = [...this.data.slice(this.beginPos + 5, this.beginPos + this.maxnum + 5)]
-      const newOffset = currentOffset + 30
+      // this.showList = [...this.data.slice(this.beginPos + 5, this.beginPos + this.maxnum + 5)]
+      const newOffset = currentOffset + stepWidth
 
       this.isHorizontal
         ? this.setOffset(newOffset, 0)

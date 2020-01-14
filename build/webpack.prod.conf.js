@@ -12,6 +12,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       sourceMap: true
     })
   },
+  devtool:'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '',

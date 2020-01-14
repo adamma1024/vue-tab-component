@@ -51,7 +51,8 @@ export default {
     updataShowList () {
       // data数量改变，showList重置，如果要定位请设置activeTab
       this.showList = this.dataLength <= this.maxnum ? this.data : this.data.slice(0, this.maxnum)
-      this.scrollToActiveTab()
+      // 数据改变移动到初始位置
+      this.goBegin()
     },
     /**
      * 改变showList
